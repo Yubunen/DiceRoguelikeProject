@@ -1,0 +1,9 @@
+*.meta
+Assembly-CSharp.csproj
+Assembly-CSharp-Editor.csproj
+Library/*
+Logs/*
+obj/*
+.vs/*
+.vsconfig/*
+DiceRoguelike.sln\

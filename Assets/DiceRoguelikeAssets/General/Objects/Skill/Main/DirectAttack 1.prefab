@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7383512993328325397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7383512993328325399}
+  - component: {fileID: 7383512993328325396}
+  m_Layer: 0
+  m_Name: DirectAttack 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7383512993328325399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383512993328325397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4390616, y: 3.6004696, z: 0.46004677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7383512993328325396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383512993328325397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a205b4eee9eca8b41a60f7ccdf133a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grade: 1
+  _sprite: {fileID: 0}
+  range:
+    rangeType: 2
+    minRange: 0
+    maxRange: 3
+    ignoreBlocked: 0
+  targetLayer: 0
+  effect:
+    effectType: 0
+    status:
+      hp: -1
+      shield: 0
+    power: 0
+    condition:
+      burn:
+        grade: 0
+        duration: 0
+      poison:
+        grade: 0
+        duration: 0
+      frozen:
+        grade: 0
+        duration: 0
+      shock:
+        grade: 0
+        duration: 0
+      recovery:
+        grade: 0
+        duration: 0
+      wet: 0
+      oiled: 0
+    ability:
+      attackIncrese: 0
+      attackMulti: 0
+      damageReduce: 0
+      damageMulti: 0
+    knockback: {x: 0, y: 0, z: 0}
+  vfxPrefab: {fileID: 100004, guid: 38621d8fa046a0445ab464c15d0da070, type: 3}
+  sfxClip: {fileID: 0}
