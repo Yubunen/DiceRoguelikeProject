@@ -6,5 +6,6 @@ Logs/*
 obj/*
 .vs/*
 .vsconfig/*
-DiceRoguelike.sln\
+DiceRoguelike.sln
 Assets/OtherResource/*
+Assets/TextMesh Pro/*
