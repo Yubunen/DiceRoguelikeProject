@@ -79,7 +79,7 @@ namespace LSemiRoguelike.Strategy
         {
             canMove = false;
             float cameraSpeed = (transform.position - transform.parent.position).magnitude * (1 / moveTime);
-            while (transform.parent.position != transform.position)
+            while (Vector2.Distance(transform.parent.position, transform.position) > 0.01f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, transform.parent.position, cameraSpeed * Time.deltaTime);
                 yield return null;
