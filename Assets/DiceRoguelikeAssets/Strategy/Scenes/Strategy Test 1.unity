@@ -5910,21 +5910,6 @@ MonoBehaviour:
     damageReduce: 0
     damageMulti: 0
     speed: 10
-  _resist:
-    burn:
-      grade: 0
-      duration: 0
-    poison:
-      grade: 0
-      duration: 0
-    frozen:
-      grade: 0
-      duration: 0
-    shock:
-      grade: 0
-      duration: 0
-    wet: 0
-    oiled: 0
   _diceManager: {fileID: -2826289021842819171, guid: 00b839d3e87d5fc4890dcf68ddf91b11, type: 3}
   maxPower: 3
   weaponPrefab: {fileID: -3935503393781002923, guid: edfbc9270c3f21248b21df73f2ee9fce, type: 3}
@@ -7127,21 +7112,6 @@ MonoBehaviour:
     damageReduce: 0
     damageMulti: 0.01
     speed: 0
-  _resist:
-    burn:
-      grade: 0
-      duration: 0
-    poison:
-      grade: 0
-      duration: 0
-    frozen:
-      grade: 0
-      duration: 0
-    shock:
-      grade: 0
-      duration: 0
-    wet: 0
-    oiled: 0
   mainSkillPrefabs: []
   attSubPrefabs: []
   moveSubPrefabs: []

@@ -7,35 +7,48 @@ namespace LSemiRoguelike
     [System.Serializable]
     public struct Ability
     {
+        //status
+        public Status maxStatus;
+
         //attack
-        public float attackIncrese;
-        public float attackMulti;
+        public int attackAbsolute;
+        public float attackRelative;
 
         //damaged
-        public float damageReduce;
-        public float damageMulti;
+        public int defenceAbsolute;
+        public float defenceRelative;
 
         public float speed;
 
-        List<BaseCondition> attackCon;
 
-        public Ability(float attackIncrese, float attackMulti, float damageReduce, float damageMulti, float speed) : this(attackIncrese, attackMulti, damageReduce, damageMulti, speed, null) { }
-        public Ability(float attackIncrese, float attackMulti, float damageReduce, float damageMulti, float speed, List<BaseCondition> attackCon)
+        public Ability(Status maxStatus) : this(maxStatus, 0, 1, 0, 1, 0) { }
+        public Ability(Status maxStatus, int attackAbsolute, float attackRelative, int defenceAbsolute, float defenceRelative, float speed)
         {
-            this.attackIncrese = attackIncrese; 
-            this.attackMulti = attackMulti;
-            this.damageReduce = damageReduce;
-            this.damageMulti = damageMulti;
+            this.maxStatus = maxStatus;
+            this.attackAbsolute = attackAbsolute; 
+            this.attackRelative = attackRelative;
+            this.defenceAbsolute = defenceAbsolute;
+            this.defenceRelative = defenceRelative;
             this.speed = speed;
+        }
 
-            this.attackCon = attackCon;
+        public static Ability operator +(Ability a, Ability b)
+        {
+            return new Ability(
+                a.maxStatus + b.maxStatus, 
+                a.attackAbsolute + b.attackAbsolute, 
+                a.attackRelative + b.attackRelative, 
+                a.defenceAbsolute + b.defenceAbsolute, 
+                a.defenceRelative + b.attackAbsolute, 
+                a.speed + b.speed
+                );
         }
 
         public override string ToString()
         {
             return
-                "Attack Increase: " + attackIncrese + "\tAttack Multi: " + attackMulti +
-                "\nDamage Reduce: " + damageReduce +"\tDamage Multi " + damageMulti +
+                "Attack Increase: " + attackAbsolute + "\tAttack Multi: " + attackRelative +
+                "\nDamage Reduce: " + defenceAbsolute +"\tDamage Multi " + defenceRelative +
                 "\nSpeed: " + speed;
         }
     }

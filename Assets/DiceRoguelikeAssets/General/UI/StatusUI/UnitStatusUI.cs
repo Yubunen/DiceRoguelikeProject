@@ -12,7 +12,7 @@ public class UnitStatusUI : MonoBehaviour
     [SerializeField] private Text shieldTxt;
     [SerializeField] private EffectPopupManager effectPopupManager;
 
-    float maxHp, hp, shield;
+    int maxHp, hp, shield;
 
     public virtual void InitUI(Status maxStatus, Status status)
     {
@@ -35,20 +35,23 @@ public class UnitStatusUI : MonoBehaviour
         hpSlider.value = hp;
         hpTxt.text = hp + "/" + maxHp;
 
+
         ShieldEffect(status.shield - shield);
         shield = status.shield;
         shieldTxt.text = shield.ToString();
         shieldImg.gameObject.SetActive(shield > 0);
     }
 
-    void HpEffect(float effect)
+    void HpEffect(int effect)
     {
+        if (effect == 0) return;
         effectPopupManager.SetPopup(effect.ToString("N"), effect > 0 ? Color.green : Color.red);
     }
 
-    void ShieldEffect(float effect)
+    void ShieldEffect(int effect)
     {
-
+        if (effect == 0) return;
+        effectPopupManager.SetPopup(effect.ToString("N"), effect > 0 ? Color.grey : Color.yellow);
     }
 
     public void SetCondition(List<BaseCondition> condition)

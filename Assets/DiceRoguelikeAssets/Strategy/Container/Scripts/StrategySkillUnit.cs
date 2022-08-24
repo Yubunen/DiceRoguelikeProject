@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace LSemiRoguelike.Strategy
 {
-    public class StrategySkillUnit : StrategyActingUnit
+    public class StrategySkillUnit : StrategyActerUnit
     {
         public new SkillUnit Unit => base.Unit as SkillUnit;
 

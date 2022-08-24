@@ -25,13 +25,13 @@ namespace LSemiRoguelike
         public virtual void Init()
         {
             _unit.Init(this);
-            _statusUI.InitUI(_unit.MaxStatus, _unit.TotalStatus);
+            _unit.getEffect.AddListener(SetStatusUI);
+            _statusUI.InitUI(_unit.TotalAbility.maxStatus, _unit.TotalStatus);
         }
         
         public virtual void GetEffect(Effect effect)
         {
             _unit.GetEffect(effect);
-            SetStatusUI();
         }
 
         protected virtual void SetStatusUI()

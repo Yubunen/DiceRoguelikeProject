@@ -35,7 +35,7 @@ public class DiceSelectUI : MonoBehaviour
         onSelect = false;
     }
 
-    public void SetDiceUI(List<Dice> dices, Weapon weapon, int maxCost, System.Action<bool[], bool> accept)
+    public void SetDiceUI(List<Dice> dices, MainSkill weaponSkill, int maxCost, System.Action<bool[], bool> accept)
     {
         this.accept = accept;
         this.maxCost = maxCost;

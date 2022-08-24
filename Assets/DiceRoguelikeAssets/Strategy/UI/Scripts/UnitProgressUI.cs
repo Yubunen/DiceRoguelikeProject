@@ -14,7 +14,7 @@ public class UnitProgressUI : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    public void Init(ActingUnit unit)
+    public void Init(ActerUnit unit)
     {
         image.sprite = unit.sprite;
         SetProgress(100);

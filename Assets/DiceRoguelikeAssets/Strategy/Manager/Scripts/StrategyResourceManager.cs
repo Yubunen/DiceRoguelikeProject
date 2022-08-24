@@ -9,12 +9,12 @@ namespace LSemiRoguelike.Strategy
     public class StrategyResourceManager : MonoBehaviour
     {
         private static StrategyResourceManager instance = null;
+        private ResourceContainer<StrategyContainer> _containers;
+        private ResourceContainer<TileObject> _tiles;
 
-        [SerializeField] private StrategyContainerResourceContainer _container;
-        [SerializeField] private TileObjectResourceContainer _tile;
+        public static ResourceContainer<StrategyContainer> containers => instance._containers;
+        public static ResourceContainer<TileObject> tiles => instance._tiles;
 
-        public static StrategyContainerResourceContainer container => instance._container;
-        public static TileObjectResourceContainer tile => instance._tile;
 
         private void OnValidate()
         {

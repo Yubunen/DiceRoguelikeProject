@@ -30,8 +30,6 @@ namespace LSemiRoguelike.Strategy
 
 		private void Start()
 		{
-			Debug.Log(Random.value);
-			Debug.Log(Random.value);
 			SetTilemap();
 			TurnManager.manager.Init();
 		}
@@ -75,7 +73,7 @@ namespace LSemiRoguelike.Strategy
             {
                 foreach (var tile in tileMapData.tiles)
                 {
-                    var obj = StrategyResourceManager.tile.GetByID(tile.objID);
+                    var obj = StrategyResourceManager.tiles.GetByID(tile.objID);
                     if (obj == null)
                     {
                         continue;
@@ -90,8 +88,8 @@ namespace LSemiRoguelike.Strategy
                 foreach (var unit in tileMapData.units)
                 {
                     var pos = CellToWorld(unit.pos);
-                    var container = Instantiate(StrategyResourceManager.container.GetByID(unit.objID / 100), pos, Quaternion.identity, unitTileMap.transform);
-                    container.SetUnit(Instantiate(GeneralResourceManager.unit.GetByID(unit.objID), container.transform));
+                    var container = Instantiate(StrategyResourceManager.containers.GetByID(unit.objID / 100), pos, Quaternion.identity, unitTileMap.transform);
+                    //container.SetUnit(Instantiate(GeneralResourceManager.unit.GetByID(unit.objID), container.transform));
                 }
             }
         }

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501f9b435e6102f4bbe1b194302020f8, type: 3}
+  m_Name: ItemResourceContainer
+  m_EditorClassIdentifier: 
+  _weapons:
+    resources:
+    - _id: 0
+      _name: Axe
+      _sprite: {fileID: 21300000, guid: 8708d80070522a043a1ab6a2b2775382, type: 3}
+      _ability:
+        maxStatus:
+          hp: 0
+          shield: 0
+          power: 0
+        attackAbsolute: 0
+        attackRelative: 0
+        defenceAbsolute: 0
+        defenceRelative: 0
+        speed: 0
+      skillPrefab: {fileID: 7383512993328325396, guid: 3600d7d0f8f5f0d4eb73230dfa8c9e6e, type: 3}
+  _parts:
+    resources:
+    - _id: 0
+      _name: gold
+      _sprite: {fileID: 21300000, guid: 87850260d0f08224e887e1c55590c081, type: 3}
+      _ability:
+        maxStatus:
+          hp: 0
+          shield: 0
+          power: 0
+        attackAbsolute: 0
+        attackRelative: 0
+        defenceAbsolute: 0
+        defenceRelative: 0
+        speed: 0
+      _powerGen: 0
+      skillPrefab: {fileID: -2982372751357950745, guid: b3f55b1924d4b8a4faf067e7ac94ca11, type: 3}
+  _accessories:
+    resources:
+    - _id: 0
+      _name: Skull Mask
+      _sprite: {fileID: 21300000, guid: 1c84373cf4be81c44b97ce70ed9d78e6, type: 3}
+      _ability:
+        maxStatus:
+          hp: 0
+          shield: 0
+          power: 0
+        attackAbsolute: 0
+        attackRelative: 0
+        defenceAbsolute: 0
+        defenceRelative: 0
+        speed: 0
+      skillPrefab: {fileID: -8583386272399321139, guid: c4f858b1a7947f648b6a69aa23aae62f, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEditor;
 
 namespace LSemiRoguelike
@@ -11,29 +12,28 @@ namespace LSemiRoguelike
         [SerializeField] protected uint _id;
         [SerializeField] protected string _name;
         [SerializeField] protected Sprite _sprite;
+
         public uint ID => _id;
         public string Name => _name;
-
-        [Header("Status")]
-        [SerializeField] protected Status _maxStatus;
-        [SerializeField] protected Ability _initAbility;
-        [SerializeField] protected BaseCondition[] _initCondition;
-
-        protected SpriteRenderer _renderer;
         public Sprite sprite => _sprite;
 
+        [Header("Status")]
+        [SerializeField] protected Ability _initAbility;
 
+
+        protected SpriteRenderer _renderer;
         protected Status _status;
-        protected Ability _ability;
-        protected List<BaseCondition> _conditions = new List<BaseCondition>();
+        protected Ability _totalAbility;
         protected BaseContainer _container;
+        protected List<Buff> _buffs = new List<Buff>();
+        protected UnityEvent _getEffect = new UnityEvent();
+        public UnityEvent getEffect => _getEffect;
 
         public Status TotalStatus => _status;
-        public Status MaxStatus => _maxStatus;
-        public Ability TotalAbility => _ability;
-        public List<BaseCondition> TotalCondition => _conditions;
+        public Status MaxStatus => TotalAbility.maxStatus;
+        public Ability TotalAbility => _totalAbility;
+        protected Conditions _conditions;
         public BaseContainer Container => _container;
-
 
         public void Init(BaseContainer container)
         {
@@ -43,61 +43,106 @@ namespace LSemiRoguelike
 
         protected virtual void Init()
         {
-            _status.hp = _maxStatus.hp;
             SetAbility();
-            _conditions.AddRange(_initCondition);
+            _status.hp = MaxStatus.hp;
+            _conditions = new Conditions();
+            _conditions.Init(this);
         }
 
         public virtual bool IsDead => _status.hp <= 0;
 
-        public virtual void SetAbility()
+        public void Activate()
         {
-            _ability = _initAbility;
+            _buffs.ForEach((b) => {
+                b.duration--;
+                if (b.duration <= 0) _buffs.Remove(b);
+            });
+            _conditions.Activate();
+
+            _status.power += MaxStatus.power;
+            _status.power = _status.power > MaxStatus.power? MaxStatus.power : _status.power;
+        }
+
+        protected virtual void SetAbility()
+        {
+            _totalAbility = _initAbility;
+            foreach (Buff buff in _buffs) _totalAbility += buff.ability;
         }
 
         public virtual Effect SetEffect(Effect effect)
         {
-            effect.status.hp += effect.status.hp * _ability.attackMulti;
+            effect.status.hp += (int)(effect.status.hp * TotalAbility.attackRelative);
             if (effect.status.hp > 0)
-                effect.status.hp += _ability.attackIncrese;
+                effect.status.hp += (int)TotalAbility.attackAbsolute;
             else if (effect.status.hp < 0)
-                effect.status.hp -= _ability.attackIncrese;
+                effect.status.hp -= (int)(TotalAbility.attackAbsolute);
 
             return effect;
+        }
+
+        public virtual void GetCondition(BaseCondition condition)
+        {
+            _conditions.Add(condition);
+        }
+
+        public virtual void GetBuff(Buff buff)
+        {
+            _buffs.Add(buff);
         }
 
         public virtual void GetEffect(Effect effect)
         {
             Effect finalEffect = new Effect();
-            //status
+            Debug.Log(effect);
+            //Status
             {
                 var beforeSts = _status;
-                _status.shield += effect.status.shield;
-                _status.shield = _status.shield > MaxStatus.shield ? MaxStatus.shield : _status.shield;
-                _status.shield = _status.shield < 0 ? 0 : _status.shield;
+                if (_status.shield != 0)
+                {
+                    _status.shield += effect.status.shield;
+                    _status.shield = _status.shield > MaxStatus.shield ? MaxStatus.shield : _status.shield;
+                    _status.shield = _status.shield < 0 ? 0 : _status.shield;
+                }
 
                 if (effect.status.hp < 0)
                 {
-                    var dmg = (effect.status.hp + _ability.damageReduce) * _ability.damageMulti;
-                    _status.shield += dmg < 0 ? dmg : -1;
-                    if (_status.shield < 0)
+                    if (effect.effectType == Effect.EffectType.Condition)
                     {
-                        _status.hp += _status.shield;
-                        _status.shield = 0;
+                        _status.hp += effect.status.hp;
+                    }
+                    else
+                    {
+                        var dmg = (int)((effect.status.hp + TotalAbility.defenceAbsolute) * TotalAbility.defenceRelative);
+                        _status.shield += dmg >= 0 ? dmg : -1;
+                        if (_status.shield < 0)
+                        {
+                            _status.hp += _status.shield;
+                            _status.shield = 0;
+                        }
                     }
                 }
                 else if (effect.status.hp > 0)
                 {
                     _status.hp += effect.status.hp;
-                    if (_status.hp > _maxStatus.hp)
-                        _status.hp = _maxStatus.hp;
+                    if (_status.hp > MaxStatus.hp)
+                        _status.hp = MaxStatus.hp;
                 }
                 finalEffect.status = beforeSts - _status;
             }
-            //TODO: Condition
-            {
 
+            //Condition, Buff
+            if(effect.conditions != null)
+            {
+                foreach (var condition in effect.conditions)
+                {
+                    GetCondition(condition);
+                }
+                foreach (var buff in effect.buffs)
+                {
+                    GetBuff(buff);
+                }
             }
+            _getEffect.Invoke();
         }
 
 #if UNITY_EDITOR

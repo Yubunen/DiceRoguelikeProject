@@ -3137,10 +3137,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Link
       objectReference: {fileID: 0}
-    - target: {fileID: 6437374635225953063, guid: a50ef4c23404496458d23d843ddc7a83, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 888869942}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a50ef4c23404496458d23d843ddc7a83, type: 3}
 --- !u!4 &754952963 stripped
@@ -3449,7 +3445,7 @@ SpriteRenderer:
   m_Size: {x: 2.56, y: 1.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &814636119
@@ -3676,57 +3672,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07f4f0db7f083974ea8b54e9b4b84245, type: 3}
---- !u!21 &888869942
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 3D Sprite (Instance)
-  m_Shader: {fileID: -6465566751694194690, guid: 6a91840c459e62d4c885e5627ec1b78c, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 5000
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 001fe1b0dd1359841b88ffc554bbb1d8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - Boolean_506c26cdc5c44923a73e8f9b7ea0857a: 0
-    - Boolean_65bcf34cf7e04bb3b5dee5552236564b: 0
-    - Boolean_a344e146c1494927ba314fd616d84b5c: 0
-    - Vector1_0f56bc5354a3416d87ad9060c59574b0: 0
-    - Vector1_5cf2aa2730364d12947bff7536ac0b73: 0.05
-    - Vector1_a7a2c84b8bae4c44a218b18b647d1f4c: 0
-    - _CurrentColumn: 0
-    - _CurrentRow: 0
-    - _X_Flip: 0
-    - _Y_Flip: 0
-    m_Colors:
-    - Color_c6a80a351db04076a2b1d5e9f0e01960: {r: 0.78431374, g: 3.137255, b: 0.78431374, a: 1}
-    - Vector2_1e7d9abedade4016986233b62a9c2067: {r: 11, g: 1, b: 0, a: 0}
-    - _GridSize: {r: 1, g: 1, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &889468683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4816,7 +4761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTime: 0.25
   moveSpeed: 5
-  moveRange: 10
 --- !u!4 &1104359273 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5842354539122028872, guid: 07f4f0db7f083974ea8b54e9b4b84245, type: 3}
@@ -8816,8 +8760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01cf033fc713574ab47f649bc61556d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _container: {fileID: 11400000, guid: 0c491d2fff62dda419f039c3b5230a0d, type: 2}
-  _tile: {fileID: 11400000, guid: e50979c9fb32a494fb8911b2e41ab99b, type: 2}
 --- !u!1001 &4155000968840593013
 PrefabInstance:
   m_ObjectHideFlags: 0

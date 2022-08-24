@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace LSemiRoguelike
 {
-    public class SkillUnit : ActingUnit
+    public class SkillUnit : ActerUnit
     {
         [SerializeField] List<MainSkill> mainSkillPrefabs;
         [SerializeField] List<SubSkill> attSubPrefabs, moveSubPrefabs, dmgSubPrefabs;

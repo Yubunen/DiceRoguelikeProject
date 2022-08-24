@@ -43,8 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da101342df872464ab5cfa6490be45cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unit: {fileID: 11400000, guid: 93db37b4b50cfdf479d8d74b6a75dfb0, type: 2}
-  _weapon: {fileID: 11400000, guid: ffe77d95054bc2a4082605046469feaf, type: 2}
-  _parts: {fileID: 11400000, guid: 3b7c4bac9348eba40ba9c1a36005edd3, type: 2}
-  _accessory: {fileID: 11400000, guid: 08e7377fe52180b4bb974d554b2626eb, type: 2}
+  _units: {fileID: 11400000, guid: 93db37b4b50cfdf479d8d74b6a75dfb0, type: 2}
+  _items: {fileID: 11400000, guid: 7c644f9a4fd41e14cbd3069200c30528, type: 2}
   _skills: {fileID: 11400000, guid: dca88537d93444a40aae1ae7eae929ce, type: 2}

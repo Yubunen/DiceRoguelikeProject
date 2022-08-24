@@ -14,8 +14,8 @@ namespace LSemiRoguelike.Strategy
 
         public UnitWithPos(StrategyContainer container)
         {
-            unit = GeneralResourceManager.unit.GetByID(container.Unit.ID);
-            this.container = StrategyResourceManager.container.GetByID(container.ID);
+            unit = GeneralResourceManager.units.GetByID(container.Unit.ID);
+            this.container = StrategyResourceManager.containers.GetByID(container.ID);
             pos = container.cellPos;
         }
     }
@@ -27,7 +27,7 @@ namespace LSemiRoguelike.Strategy
 
         public TileWithPos(TileObject tile)
         {
-            this.tile = StrategyResourceManager.tile.GetByID(tile.ID);
+            this.tile = StrategyResourceManager.tiles.GetByID(tile.ID);
             pos = tile.cellPos;
         }
     }
