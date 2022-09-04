@@ -18,7 +18,7 @@ public class CheckButton : MonoBehaviour
         (int hit, int brow) result = NumelonMng.instance.Check(int.Parse(inText.text));
         if(result.hit == 3)
         {
-            resultText.text = "Collect!";
+            resultText.text = "Correct!";
             coverPanel.SetActive(true);
         }
         else
