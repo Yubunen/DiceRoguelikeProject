@@ -13,3 +13,5 @@ Assets/OtherResource/*
 DiceRoguelike.sln
 Assets/OtherResource/
 Temp/*
+*.sln
+UserSettings
