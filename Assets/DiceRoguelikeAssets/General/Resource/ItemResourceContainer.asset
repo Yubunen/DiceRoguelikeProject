@@ -16,6 +16,7 @@ MonoBehaviour:
     resources:
     - _id: 0
       _name: Axe
+      _description: 
       _sprite: {fileID: 21300000, guid: 8708d80070522a043a1ab6a2b2775382, type: 3}
       _ability:
         maxStatus:
@@ -28,11 +29,65 @@ MonoBehaviour:
         defenceRelative: 0
         speed: 0
       skillPrefab: {fileID: 7383512993328325396, guid: 3600d7d0f8f5f0d4eb73230dfa8c9e6e, type: 3}
-  _parts:
+      _cost: 3
+    - _id: 1
+      _name: Gun
+      _description: 
+      _sprite: {fileID: 21300020, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
+      _ability:
+        maxStatus:
+          hp: 0
+          shield: 0
+          power: 0
+        attackAbsolute: 0
+        attackRelative: 0
+        defenceAbsolute: 0
+        defenceRelative: 0
+        speed: 0
+      skillPrefab: {fileID: 7383512993328325396, guid: be7f6f1e1fdb6e64e8a5d7bd14b598f0, type: 3}
+      _cost: 3
+  _armParts:
     resources:
     - _id: 0
-      _name: gold
-      _sprite: {fileID: 21300000, guid: 87850260d0f08224e887e1c55590c081, type: 3}
+      _name: Sample arm
+      _description: 
+      _sprite: {fileID: -5598242937924959737, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
+      _ability:
+        maxStatus:
+          hp: 0
+          shield: 0
+          power: 0
+        attackAbsolute: 0
+        attackRelative: 0
+        defenceAbsolute: 0
+        defenceRelative: 0
+        speed: 0
+      _powerGen: 0
+      skillPrefab: {fileID: -2982372751357950745, guid: b3f55b1924d4b8a4faf067e7ac94ca11, type: 3}
+  _bodyParts:
+    resources:
+    - _id: 0
+      _name: Sample body
+      _description: 
+      _sprite: {fileID: -9172421302522054499, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
+      _ability:
+        maxStatus:
+          hp: 0
+          shield: 0
+          power: 0
+        attackAbsolute: 0
+        attackRelative: 0
+        defenceAbsolute: 0
+        defenceRelative: 0
+        speed: 0
+      _powerGen: 0
+      skillPrefab: {fileID: -2982372751357950745, guid: b3f55b1924d4b8a4faf067e7ac94ca11, type: 3}
+  _legParts:
+    resources:
+    - _id: 0
+      _name: Sample leg
+      _description: 
+      _sprite: {fileID: -3993533075046343410, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
       _ability:
         maxStatus:
           hp: 0
@@ -49,6 +104,7 @@ MonoBehaviour:
     resources:
     - _id: 0
       _name: Skull Mask
+      _description: 
       _sprite: {fileID: 21300000, guid: 1c84373cf4be81c44b97ce70ed9d78e6, type: 3}
       _ability:
         maxStatus:
@@ -61,3 +117,5 @@ MonoBehaviour:
         defenceRelative: 0
         speed: 0
       skillPrefab: {fileID: -8583386272399321139, guid: c4f858b1a7947f648b6a69aa23aae62f, type: 3}
+  _consumables:
+    resources: []

@@ -15,10 +15,20 @@ namespace LSemiRoguelike
         public ResourceContainer<SkillUnit> skillUnits => _skillUnits;
         public ResourceContainer<PlayerUnit> playerUnits => _playerUnits;
 
-
-        public BaseUnit GetByID(uint id)
+        private void OnValidate()
         {
-            return null;
+            _baseUnits.Sort();
+            _skillUnits.Sort();
+            _playerUnits.Sort();
+        }
+
+        public BaseUnit GetByID(int id)
+        {
+            BaseUnit unit;
+            unit = baseUnits.GetByID(id);
+            if(!unit) unit = skillUnits.GetByID(id);
+            if(!unit) unit = playerUnits.GetByID(id);
+            return unit;
         }
     }
 }

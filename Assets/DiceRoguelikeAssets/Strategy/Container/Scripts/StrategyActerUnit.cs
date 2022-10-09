@@ -38,7 +38,7 @@ namespace LSemiRoguelike.Strategy
             turnCount += InitTurnCount;
         }
 
-        protected void SetActions(List<MainSkill> actions)
+        protected void SetActions(List<UnitAction> actions)
         {
             _actions = new List<StrategyAction>();
             for (int i = 0; i < actions.Count; i++)
@@ -91,7 +91,21 @@ namespace LSemiRoguelike.Strategy
 
         protected bool Acting(StrategyAction action, Vector3Int targetPos)
         {
-            if (action.skill is SpecialAction)
+            if (action.action.skill)
+            {
+                var targets = action.targets;
+                foreach (var target in targets)
+                {
+                    if (target.cellPos == targetPos)
+                    {
+                        nowAct = ActType.WaitAction;
+                        StartCoroutine(SkillCast(action.action.skill, target));
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else
             {
                 var rangeRoutes = action.routes;
                 Route targetRoute = null;
@@ -115,20 +129,6 @@ namespace LSemiRoguelike.Strategy
                 nowAct = ActType.WaitAction;
                 StartCoroutine(MoveTo(moveRoute));
                 return true;
-            }
-            else
-            {
-                var targets = action.targets;
-                foreach (var target in targets)
-                {
-                    if (target.cellPos == targetPos)
-                    {
-                        nowAct = ActType.WaitAction;
-                        StartCoroutine(SkillCast(action.skill, target));
-                        return true;
-                    }
-                }
-                return false;
             }
         }
 
@@ -156,7 +156,7 @@ namespace LSemiRoguelike.Strategy
                 }
                 yield return null;
             }
-            Unit.Move();
+            Unit.Special();
             nowAct = ActType.SelectAction;
         }
 

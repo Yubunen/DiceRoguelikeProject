@@ -10,17 +10,41 @@ namespace LSemiRoguelike
     {
         [SerializeField] private List<T> resources = new List<T>();
 
-        private void OnValidate()
+        public string[] GetItemIDs()
+        {
+            string[] ids = new string[resources.Count];
+            for(int i = 0; i < ids.Length; i++) ids[i] = resources[i].ID.ToString();
+            return ids;
+        }
+        public string[] GetItemNames()
+        {
+            string[] ids = new string[resources.Count];
+            for(int i = 0; i < ids.Length; i++) ids[i] = resources[i].Name.ToString();
+            return ids;
+        }
+
+        public void Sort()
         {
             resources.Sort((a, b) =>
             {
-                return (int)(a.ID - b.ID);
+                return (a.ID - b.ID);
             });
         }
 
-        public T GetByID(uint id)
+        public T GetByID(int id)
         {
-            return resources.Find((x) => { return x.ID == id; });
+            if (resources?.Count == 0) return default(T);
+            return resources.Find((x) => {
+                return x.ID == id; 
+            });
+        }
+
+        public T GetByName(string name)
+        {
+            if (resources?.Count == 0) return default(T);
+            return resources.Find((x) => {
+                return x.Name == name;
+            });
         }
     }
 }

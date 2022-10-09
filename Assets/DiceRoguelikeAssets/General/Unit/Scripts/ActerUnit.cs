@@ -6,10 +6,10 @@ namespace LSemiRoguelike
 {
     public abstract class ActerUnit : BaseUnit
     {
-        public abstract void SetActionCallback(System.Action<List<MainSkill>> action);
+        public abstract void SetActionCallback(System.Action<List<UnitAction>> action);
         public abstract void GetSkill();
         public abstract void Attack();
-        public abstract void Move();
+        public abstract void Special();
         protected abstract void Damaged();
         public abstract void Passive();
         public override void GetEffect(Effect effect)

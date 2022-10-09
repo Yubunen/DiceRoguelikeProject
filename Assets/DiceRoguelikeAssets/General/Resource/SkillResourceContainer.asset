@@ -9,8 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb61f0a39d1f9f4469ce48f7490165a4, type: 3}
-  m_Name: TileMapData1
+  m_Script: {fileID: 11500000, guid: 5d66c6ba6a8584b46bb6da46c4f098c1, type: 3}
+  m_Name: SkillResourceContainer
   m_EditorClassIdentifier: 
-  tiles: []
-  units: []
+  _mainSkills:
+    resources: []
+  _subSkills:
+    resources: []
+  _passiveSkills:
+    resources: []

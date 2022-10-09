@@ -45,7 +45,8 @@ namespace LSemiRoguelike.Strategy
                 if (x.Unit.ID > y.Unit.ID) return 1;
                 return -1;
             });
-            
+
+            Debug.Log(ProgressUIManager.instance);
             foreach (var unit in units)
             {
                 progressUIs.Add(ProgressUIManager.instance.InstantiateUnitProgressUI(unit.Unit));

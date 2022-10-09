@@ -15,6 +15,8 @@ MonoBehaviour:
   _baseUnits:
     resources: []
   _skillUnits:
-    resources: []
+    resources:
+    - {fileID: 5948986130085727749, guid: 4b276330af2d60f4fb5b707eadda7c3b, type: 3}
   _playerUnits:
-    resources: []
+    resources:
+    - {fileID: 7103342306540626436, guid: a50ef4c23404496458d23d843ddc7a83, type: 3}

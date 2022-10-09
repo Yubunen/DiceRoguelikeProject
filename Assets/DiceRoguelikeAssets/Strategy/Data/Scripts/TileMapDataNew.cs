@@ -15,7 +15,7 @@ namespace LSemiRoguelike.Strategy
         public UnitWithPos(StrategyContainer container)
         {
             unit = GeneralResourceManager.units.GetByID(container.Unit.ID);
-            this.container = StrategyResourceManager.containers.GetByID(container.ID);
+            this.container = StrategyResourceManager.GetContainerByType(container.GetType());
             pos = container.cellPos;
         }
     }

@@ -10,13 +10,13 @@ public class DiceSelectUI : MonoBehaviour
     private static DiceSelectUI _inst;
     public static DiceSelectUI inst => _inst;
     
-    [SerializeField] private DiceInfoUI prefab;
+    [SerializeField] private DiceSelectBtn prefab;
     [SerializeField] Button acceptBtn, weaponBtn;
     [SerializeField] TextMeshProUGUI costTxt;
     [SerializeField] Color selected;
 
     float width = Screen.width;
-    DiceInfoUI[] diceUIs;
+    DiceSelectBtn[] diceUIs;
     bool[] diceUse;
     bool weaponUse;
     bool onSelect;
@@ -35,16 +35,16 @@ public class DiceSelectUI : MonoBehaviour
         onSelect = false;
     }
 
-    public void SetDiceUI(List<Dice> dices, MainSkill weaponSkill, int maxCost, System.Action<bool[], bool> accept)
+    public void SetDiceUI(Dice[] dices, UnitAction weaponSkill, int maxCost, System.Action<bool[], bool> accept)
     {
         this.accept = accept;
         this.maxCost = maxCost;
         this.cost = 0;
         this.weaponUse = false;
 
-        float xInterval = width / (dices.Count + 3);
-        diceUIs = new DiceInfoUI[dices.Count];
-        diceUse = new bool[dices.Count];
+        float xInterval = width / (dices.Length + 3);
+        diceUIs = new DiceSelectBtn[dices.Length];
+        diceUse = new bool[dices.Length];
 
         weaponBtn.gameObject.SetActive(true);
         acceptBtn.gameObject.SetActive(true);
@@ -55,7 +55,7 @@ public class DiceSelectUI : MonoBehaviour
         pos.x = xInterval;
         weaponBtn.transform.localPosition = pos;
 
-        for (int i = 0; i < dices.Count; i++)
+        for (int i = 0; i < dices.Length; i++)
         {
             diceUIs[i] = Instantiate(prefab, transform);
             pos.x += xInterval;
@@ -69,7 +69,7 @@ public class DiceSelectUI : MonoBehaviour
                 SetCostText();
             });
         }
-        pos.x = (dices.Count + 2) * xInterval;
+        pos.x = (dices.Length + 2) * xInterval;
         acceptBtn.transform.localPosition = pos;
         onSelect = true;
         StartCoroutine(OnSelectCo());

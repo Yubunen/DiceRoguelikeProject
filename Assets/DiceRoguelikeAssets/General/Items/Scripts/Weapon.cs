@@ -10,7 +10,9 @@ namespace LSemiRoguelike
     {
         [SerializeField] private MainSkill skillPrefab;
         private MainSkill _skill;
-        public MainSkill skill => _skill;
+        [SerializeField] private int _cost;
+        public MainSkill Skill => _skill;
+        public int Cost => _cost;
 
         public Weapon(Weapon other)
         {

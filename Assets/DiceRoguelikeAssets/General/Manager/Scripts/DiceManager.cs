@@ -11,22 +11,23 @@ namespace LSemiRoguelike
         public static DiceManager Instance => _instance;
 
         protected PlayerUnit owner;
-        protected MainSkill weaponSkill;
-        protected List<Dice> dices;
+        protected UnitAction weaponAction;
+        protected Dice[] dices;
         protected int power;
-        protected System.Action<List<MainSkill>> returnAction;
+        protected System.Action<List<UnitAction>> returnAction;
 
         private void Awake()
         {
             _instance = this;
         }
 
-        public  void Init(PlayerUnit owner, MainSkill weaponSkill, List<Dice> dices, System.Action<List<MainSkill>> action)
+        public  void Init(PlayerUnit owner, UnitAction weaponSkill, Dice[] dices, System.Action<List<UnitAction>> action)
         {
             this.owner = owner;
-            this.weaponSkill = weaponSkill;
+            this.weaponAction = weaponSkill;
             this.dices = dices;
             returnAction = action;
+            Init();
         }
 
         protected abstract void Init();

@@ -14,5 +14,11 @@ namespace LSemiRoguelike
         public ResourceContainer<MainSkill> mainSkills => _mainSkills;
         public ResourceContainer<SubSkill> subSkills => _subSkills;
         public ResourceContainer<PassiveSkill> passiveSkills => _passiveSkills;
+        private void OnValidate()
+        {
+            _mainSkills.Sort();
+            _subSkills.Sort();
+            _passiveSkills.Sort();
+        }
     }
 }

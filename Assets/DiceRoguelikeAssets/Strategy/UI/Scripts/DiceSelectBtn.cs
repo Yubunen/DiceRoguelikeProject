@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using LSemiRoguelike;
 
-public class DiceInfoUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DiceSelectBtn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private Image image;
     private Button button;

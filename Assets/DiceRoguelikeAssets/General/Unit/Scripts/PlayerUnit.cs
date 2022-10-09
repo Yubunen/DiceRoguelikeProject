@@ -33,9 +33,9 @@ namespace LSemiRoguelike
             itemManager.AttackSub();
         }
 
-        public override void Move()
+        public override void Special()
         {
-            itemManager.MoveSub();
+            itemManager.SpecialSub();
         }
 
         protected override void Damaged()
@@ -46,9 +46,9 @@ namespace LSemiRoguelike
         {
             itemManager.Passive();
         }
-        public override void SetActionCallback(System.Action<List<MainSkill>> action)
+        public override void SetActionCallback(System.Action<List<UnitAction>> action)
         {
-            diceManager.Init(this, itemManager.GetWeaponSkill(), itemManager.Dices, action);
+            diceManager.Init(this, itemManager.GetWeaponAction(), itemManager.Dices, action);
         }
 
         public override void GetSkill()

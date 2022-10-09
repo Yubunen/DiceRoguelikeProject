@@ -9,13 +9,16 @@ namespace LSemiRoguelike
     public class BaseUnit : MonoBehaviour, IHaveInfo
     {
         [Header("Info")]
-        [SerializeField] protected uint _id;
+        [SerializeField] protected int _id;
         [SerializeField] protected string _name;
+        [SerializeField] protected string _description;
         [SerializeField] protected Sprite _sprite;
 
-        public uint ID => _id;
+        public int ID => _id;
         public string Name => _name;
-        public Sprite sprite => _sprite;
+        public string Description => _description;
+        public Sprite Icon => _sprite;
+
 
         [Header("Status")]
         [SerializeField] protected Ability _initAbility;
@@ -28,6 +31,7 @@ namespace LSemiRoguelike
         protected List<Buff> _buffs = new List<Buff>();
         protected UnityEvent _getEffect = new UnityEvent();
         public UnityEvent getEffect => _getEffect;
+        public virtual bool IsDead => _status.hp <= 0;
 
         public Status TotalStatus => _status;
         public Status MaxStatus => TotalAbility.maxStatus;
@@ -49,7 +53,6 @@ namespace LSemiRoguelike
             _conditions.Init(this);
         }
 
-        public virtual bool IsDead => _status.hp <= 0;
 
         public void Activate()
         {
@@ -93,7 +96,6 @@ namespace LSemiRoguelike
         public virtual void GetEffect(Effect effect)
         {
             Effect finalEffect = new Effect();
-            Debug.Log(effect);
             //Status
             {
                 var beforeSts = _status;

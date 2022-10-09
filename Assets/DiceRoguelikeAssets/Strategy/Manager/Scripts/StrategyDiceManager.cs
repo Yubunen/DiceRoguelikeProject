@@ -17,21 +17,21 @@ namespace LSemiRoguelike.Strategy
 
         protected override void Init()
         {
-            dices.ForEach((d) => d.Init(owner));
+            foreach (var dice in dices) dice.Init(owner);
             diceObjects = new List<DiceObject>();
         }
 
         public override void GetActions(int power)
         {
             this.power = power;
-            DiceSelectUI.inst.SetDiceUI(dices, weaponSkill, power, GetSelected);
+            DiceSelectUI.inst.SetDiceUI(dices, weaponAction, power, GetSelected);
         }
 
         public void GetSelected(bool[] diceUse, bool weaponUse)
         {
             if (diceUse == null && !weaponUse)
             {
-                returnAction(new List<MainSkill>());
+                returnAction(new List<UnitAction>());
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace LSemiRoguelike.Strategy
         {
             var count = useDice.Count;
             var interval = width / (count + 1);
-            var results = new List<MainSkill>();
+            var results = new List<UnitAction>();
 
             for (int i = diceObjects.Count; i < count; i++)
             {
@@ -65,7 +65,7 @@ namespace LSemiRoguelike.Strategy
             }
 
             yield return new WaitUntil(() => results.Count == useDice.Count);
-            if (weaponUse) results.Add(weaponSkill);
+            if (weaponUse) results.Add(weaponAction);
             returnAction(results);
 
             foreach (var obj in diceObjects) obj.gameObject.SetActive(false);

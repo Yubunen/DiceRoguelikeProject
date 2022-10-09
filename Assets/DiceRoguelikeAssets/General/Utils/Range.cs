@@ -8,7 +8,7 @@ namespace LSemiRoguelike
     [System.Serializable]
     public struct Range
     {
-        public enum RangeType { Linear, Distance, Square }
+        public enum RangeType { Straight, FourDirection, AllDirection }
 
         public RangeType rangeType;
         public int minRange;

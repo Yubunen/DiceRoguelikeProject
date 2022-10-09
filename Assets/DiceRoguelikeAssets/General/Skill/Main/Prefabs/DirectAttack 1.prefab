@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: 0
   _name: 
+  _description: hit the target
   _grade: 1
   _sprite: {fileID: 0}
   range:

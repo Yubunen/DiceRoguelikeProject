@@ -13,7 +13,7 @@ namespace LSemiRoguelike.Shooting
 
         public override void GetActions(int power)
         {
-            returnAction(new List<MainSkill>() { weaponSkill });
+            returnAction(new List<UnitAction>() { weaponAction });
         }
     }
 }
