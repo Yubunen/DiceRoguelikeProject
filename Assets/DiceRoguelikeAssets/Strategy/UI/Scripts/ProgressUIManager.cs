@@ -14,7 +14,7 @@ public class ProgressUIManager : MonoBehaviour
     }
 
 
-    public UnitProgressUI InstantiateUnitProgressUI(ActingUnit unit)
+    public UnitProgressUI InstantiateUnitProgressUI(ActerUnit unit)
     {
         var ui = Instantiate(progressUiPrefab, transform);
         ui.Init(unit);

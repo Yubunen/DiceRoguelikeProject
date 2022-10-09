@@ -9,10 +9,9 @@ namespace LSemiRoguelike
         [SerializeField] private float _cost;
         private float _nowPower;
 
-        public override void Init(ActingUnit caster)
+        protected override void Init()
         {
             _nowPower = 0;
-            base.Init(caster);
         }
 
         public void SupplyPower(float power)

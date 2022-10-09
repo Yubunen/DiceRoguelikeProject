@@ -30,8 +30,6 @@ namespace LSemiRoguelike.Strategy
 
 		private void Start()
 		{
-			Debug.Log(Random.value);
-			Debug.Log(Random.value);
 			SetTilemap();
 			TurnManager.manager.Init();
 		}
@@ -75,11 +73,8 @@ namespace LSemiRoguelike.Strategy
             {
                 foreach (var tile in tileMapData.tiles)
                 {
-                    var obj = StrategyResourceManager.tile.GetByID(tile.objID);
-                    if (obj == null)
-                    {
-                        continue;
-                    }
+                    var obj = StrategyResourceManager.tiles.GetByID(tile.objID);
+                    if (!obj) continue;
                     var pos = CellToWorld(tile.pos) + obj.transform.position;
                     Instantiate(obj, pos, Quaternion.identity, groundTileMap.transform).Init(tile.pos);
                 }
@@ -90,8 +85,13 @@ namespace LSemiRoguelike.Strategy
                 foreach (var unit in tileMapData.units)
                 {
                     var pos = CellToWorld(unit.pos);
-                    var container = Instantiate(StrategyResourceManager.container.GetByID(unit.objID / 100), pos, Quaternion.identity, unitTileMap.transform);
-                    container.SetUnit(Instantiate(GeneralResourceManager.unit.GetByID(unit.objID), container.transform));
+					var tempUnit = GeneralResourceManager.units.GetByID(unit.objID);
+					var container = StrategyResourceManager.GetContainerByType(tempUnit.GetType());
+					container.transform.position = pos;
+					container.transform.rotation = Quaternion.identity;
+					container.transform.SetParent(unitTileMap.transform);
+
+					container.SetUnit(Instantiate(tempUnit, container.transform));
                 }
             }
         }
@@ -241,7 +241,7 @@ namespace LSemiRoguelike.Strategy
 			
 			List<Vector3Int> nonSight = new List<Vector3Int>();
 
-			if (range.rangeType == Range.RangeType.Linear)
+			if (range.rangeType == Range.RangeType.Straight)
             {
 				List<Vector3Int> dirList = new List<Vector3Int> {
 					new Vector3Int(1, 0, 0), new Vector3Int(-1, 0, 0),
@@ -283,7 +283,7 @@ namespace LSemiRoguelike.Strategy
 					new Vector3Int(1, 0, 0), new Vector3Int(-1, 0, 0),
 					new Vector3Int(0, 1, 0), new Vector3Int(0, -1, 0)
 				};
-				if (range.rangeType == Range.RangeType.Square)
+				if (range.rangeType == Range.RangeType.AllDirection)
 				{
 					moveArr.Add(new Vector3Int(1, 1, 0));
 					moveArr.Add(new Vector3Int(1, -1, 0));
@@ -358,6 +358,7 @@ namespace LSemiRoguelike.Strategy
 			var tileMapManager = target as TileMapManager;
 			if (tileMapManager.tileMapData)
 			{
+				GUILayout.BeginHorizontal();
 				if (GUILayout.Button("Save"))
 				{
 					tileMapManager.TileMapSave();
@@ -367,17 +368,11 @@ namespace LSemiRoguelike.Strategy
 				{
 					tileMapManager.TileMapLoad();
 				}
-				if (GUILayout.Button("New"))
-				{
-					tileMapManager.tileMapData = CreateTileMapData();
-				}
+				GUILayout.EndHorizontal();
 			}
-			else
+			if (GUILayout.Button("New"))
 			{
-				if (GUILayout.Button("Create"))
-				{
-					tileMapManager.tileMapData = CreateTileMapData();
-				}
+				tileMapManager.tileMapData = CreateTileMapData();
 			}
 		}
 

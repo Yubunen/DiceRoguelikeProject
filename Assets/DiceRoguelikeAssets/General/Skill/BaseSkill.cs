@@ -6,19 +6,28 @@ namespace LSemiRoguelike
 {
     public abstract class BaseSkill : MonoBehaviour, IHaveInfo
     {
-        [SerializeField] protected uint _id;
+        [SerializeField] protected int _id;
         [SerializeField] protected string _name;
+        [SerializeField] protected string _description;
         [SerializeField] protected int _grade = 0;
         [SerializeField] protected Sprite _sprite;
-        protected ActingUnit _caster;
+        protected ActerUnit _caster;
 
         protected BaseContainer _container => _caster.Container;
         public int grade => _grade;
-        public Sprite sprite => _sprite;
-        public ActingUnit caster => _caster;
-        public uint ID => throw new System.NotImplementedException();
-        public string Name => throw new System.NotImplementedException();
+        public ActerUnit caster => _caster;
 
-        public virtual void Init(ActingUnit caster) { _caster = caster; }
+        public int ID => _id;
+        public string Name => _name;
+        public string Description => _description;
+        public Sprite Icon => _sprite;
+
+        public void Init(ActerUnit caster) 
+        { 
+            _caster = caster; 
+            Init(); 
+        }
+
+        protected virtual void Init() { }
     }
 }

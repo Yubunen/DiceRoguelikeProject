@@ -4,72 +4,56 @@ using UnityEditor;
 
 namespace LSemiRoguelike
 {
-    public class PlayerUnit : ActingUnit
+    [System.Serializable]
+    public class PlayerUnit : ActerUnit
     {
-        [SerializeField] protected DiceManager _diceManager;
-        [SerializeField] protected int maxPower;
+        protected DiceManager diceManager => DiceManager.Instance;
+        protected ItemManager itemManager => ItemManager.Instance;
 
-        [Header("Items")]
-        [SerializeField] protected Weapon weaponPrefab;
-        [SerializeField] protected Parts armPartsPrefab, legPartsPrefab, bodyPartsPrefab;
-        [SerializeField] protected List<Accessory> accessoryPrefabs;
-
-        protected int power;
-
-        protected Weapon weapon;
-        protected Parts armParts, legParts, bodyParts;
-        protected List<Accessory> accessorys;
         protected Status buffStatus;
-        public DiceManager diceManager { get { return _diceManager; } }
+        //public DiceManager diceManager { get { return _diceManager; } }
 
         protected override void Init()
         {
-            _diceManager = Instantiate(_diceManager, transform);
-            (weapon = Instantiate(weaponPrefab, transform)).Init(this);
-            (armParts = Instantiate(armPartsPrefab, transform)).Init(this);
-            (legParts = Instantiate(legPartsPrefab, transform)).Init(this);
-            (bodyParts = Instantiate(bodyPartsPrefab, transform)).Init(this);
-            accessorys = new List<Accessory>();
-            accessoryPrefabs.ForEach((a) =>
-            {
-                accessorys.Insert(0, Instantiate(a, transform));
-                accessorys[0].Init(this);
-            });
+            diceManager.transform.localPosition = new Vector3(0, 2, 0);
+            itemManager.Init(this);
 
-            _diceManager.transform.localPosition = new Vector3(0, 2, 0);
-            power = maxPower;
             base.Init();
+        }
+
+        protected override void SetAbility()
+        {
+            _totalAbility = _initAbility;
+            _totalAbility += itemManager.GetAbility();
+            foreach (Buff buff in _buffs) _totalAbility += buff.ability;
         }
 
         public override void Attack()
         {
-            armParts.PowerGenerate();
+            itemManager.AttackSub();
         }
 
-        public override void Move()
+        public override void Special()
         {
-            legParts.PowerGenerate();
+            itemManager.SpecialSub();
         }
 
         protected override void Damaged()
         {
-            bodyParts.PowerGenerate();
+            itemManager.DamagedSub();
         }
         public override void Passive()
         {
-            foreach (var accessory in accessorys)
-            {
-                accessory.Passive();
-            }
+            itemManager.Passive();
         }
-        public override void SetActionCallback(System.Action<List<MainSkill>> action)
+        public override void SetActionCallback(System.Action<List<UnitAction>> action)
         {
-            diceManager.Init(this, weapon, action);
+            diceManager.Init(this, itemManager.GetWeaponAction(), itemManager.Dices, action);
         }
 
         public override void GetSkill()
         {
-            diceManager.GetActions(power);
+            diceManager.GetActions((int)TotalStatus.power);
         }
 
 #if UNITY_EDITOR

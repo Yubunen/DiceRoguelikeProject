@@ -6,37 +6,37 @@ using UnityEditor;
 
 namespace LSemiRoguelike
 {
-    public class SkillUnit : ActingUnit
+    public class SkillUnit : ActerUnit
     {
-        [SerializeField] List<MainSkill> mainSkillPrefabs;
-        [SerializeField] List<SubSkill> attSubPrefabs, moveSubPrefabs, dmgSubPrefabs;
+        [SerializeField] List<UnitAction> actionPrefabs;
+        [SerializeField] List<SubSkill> attSubPrefabs, dmgSubPrefabs, specialSubPrefabs;
         [SerializeField] List<PassiveSkill> passivePrefabs;
 
         [SerializeField] float attPowerGen = 1f, movePowerGen = 1f, dmgPowerGen = 1f;
 
-        List<MainSkill> _mainSkills;
-        List<SubSkill> _attSub, _moveSub, _dmgSub;
+        List<UnitAction> _actions;
+        List<SubSkill> _attSub, _specialSub, _dmgSub;
         List<PassiveSkill> _passive;
 
-        Action<List<MainSkill>> actionCallBacck;
+        Action<List<UnitAction>> actionCallBacck;
 
         protected override void Init()
         {
-            _mainSkills = new List<MainSkill>();
+            _actions = new List<UnitAction>();
             _attSub = new List<SubSkill>();
-            _moveSub = new List<SubSkill>();
+            _specialSub = new List<SubSkill>();
             _dmgSub = new List<SubSkill>();
             _passive = new List<PassiveSkill>();
 
-            mainSkillPrefabs.ForEach((s) => _mainSkills.Add(Instantiate(s)));
+            actionPrefabs.ForEach((s) => _actions.Add(new UnitAction(s.cost, Instantiate(s.skill))));
             attSubPrefabs.ForEach((s) => _attSub.Add(Instantiate(s)));
-            moveSubPrefabs.ForEach((s) => _moveSub.Add(Instantiate(s)));
+            specialSubPrefabs.ForEach((s) => _specialSub.Add(Instantiate(s)));
             dmgSubPrefabs.ForEach((s) => _dmgSub.Add(Instantiate(s)));
             passivePrefabs.ForEach((s) => _passive.Add(Instantiate(s)));
 
-            _mainSkills.ForEach((s) => s.Init(this));
+            _actions.ForEach((s) => s.skill.Init(this));
             _attSub.ForEach((s) => s.Init(this));
-            _moveSub.ForEach((s) => s.Init(this));
+            _specialSub.ForEach((s) => s.Init(this));
             _dmgSub.ForEach((s) => s.Init(this));
             _passive.ForEach((s) => s.Init(this));
 
@@ -47,9 +47,9 @@ namespace LSemiRoguelike
         {
             _attSub.ForEach((s) => s.SupplyPower(attPowerGen));
         }
-        public override void Move()
+        public override void Special()
         {
-            _moveSub.ForEach((s) => s.SupplyPower(movePowerGen));
+            _specialSub.ForEach((s) => s.SupplyPower(movePowerGen));
         }
 
         protected override void Damaged()
@@ -64,10 +64,10 @@ namespace LSemiRoguelike
 
         public override void GetSkill()
         {
-            actionCallBacck(_mainSkills);
+            actionCallBacck(_actions);
         }
 
-        public override void SetActionCallback(Action<List<MainSkill>> action)
+        public override void SetActionCallback(Action<List<UnitAction>> action)
         {
             actionCallBacck = action;
         }

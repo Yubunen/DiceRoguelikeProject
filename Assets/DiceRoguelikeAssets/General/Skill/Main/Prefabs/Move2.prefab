@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71452b4e00707284ca9a98ca1d5d9095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
+  _name: Four direction move
+  _description: 
   _grade: 0
   _sprite: {fileID: 0}
   range:

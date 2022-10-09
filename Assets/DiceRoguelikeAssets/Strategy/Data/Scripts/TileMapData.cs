@@ -8,10 +8,10 @@ namespace LSemiRoguelike.Strategy
     [System.Serializable]
     public struct ObjWithPos
     {
-        public uint objID;
+        public int objID;
         public Vector3Int pos;
 
-        public ObjWithPos(uint id, Vector3Int pos)
+        public ObjWithPos(int id, Vector3Int pos)
         {
             this.objID = id;
             this.pos = pos;

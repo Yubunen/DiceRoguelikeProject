@@ -75,7 +75,7 @@ namespace LSemiRoguelike.Strategy
             //Axis
             var axis = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             transform.Translate(axis * moveSpeed * Time.deltaTime);
-            if(axis != Vector3.zero)
+            if(axis != Vector3.zero || !target)
                 onFollow = false;
 
             if (onFollow)

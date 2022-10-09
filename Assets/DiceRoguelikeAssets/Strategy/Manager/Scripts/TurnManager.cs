@@ -8,10 +8,10 @@ namespace LSemiRoguelike.Strategy
     public class TurnManager : MonoBehaviour
     {
         public static TurnManager manager;
-        private List<StrategyActingUnit> units;
+        private List<StrategyActerUnit> units;
         private List<UnitProgressUI> progressUIs;
 
-        private Queue<StrategyActingUnit> turnUnit;
+        private Queue<StrategyActerUnit> turnUnit;
 
         private void Awake()
         {
@@ -25,13 +25,13 @@ namespace LSemiRoguelike.Strategy
 
         public void Init()
         {
-            units = new List<StrategyActingUnit>();
-            turnUnit = new Queue<StrategyActingUnit>();
+            units = new List<StrategyActerUnit>();
+            turnUnit = new Queue<StrategyActerUnit>();
             progressUIs = new List<UnitProgressUI>();
 
             for (int i = 0; i < transform.childCount; i++)
             {
-                var unit = transform.GetChild(i).GetComponent<StrategyActingUnit>();
+                var unit = transform.GetChild(i).GetComponent<StrategyActerUnit>();
                 if (unit != null) units.Add(unit);
             }
 
@@ -45,7 +45,8 @@ namespace LSemiRoguelike.Strategy
                 if (x.Unit.ID > y.Unit.ID) return 1;
                 return -1;
             });
-            
+
+            Debug.Log(ProgressUIManager.instance);
             foreach (var unit in units)
             {
                 progressUIs.Add(ProgressUIManager.instance.InstantiateUnitProgressUI(unit.Unit));
@@ -81,7 +82,7 @@ namespace LSemiRoguelike.Strategy
             StartCoroutine(unit.GetTurn());
         }
         
-        public void RemoveUnit(StrategyActingUnit unit)
+        public void RemoveUnit(StrategyActerUnit unit)
         {
             if (unit == units![0]) ViewPointMove.Inst?.ResetTarget();
 

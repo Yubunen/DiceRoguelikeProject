@@ -4,21 +4,36 @@ using UnityEngine;
 
 namespace LSemiRoguelike
 {
-    public class Parts : BaseItem<SubSkill>
+    [System.Serializable]
+    public class Parts : BaseItem
     {
-        public enum PartsType { ARM, LEG, BODY }
+        [SerializeField] protected float _powerGen = 1f;
+        [SerializeField] protected SubSkill skillPrefab;
 
-        [SerializeField] protected PartsType type;
-        [SerializeField] protected float powerGen = 1f;
+        protected SubSkill _skill;
+        public SubSkill skill => _skill;
 
-        public PartsType GetPartsType() { return type; }
+        public Parts(Parts other)
+        {
+            _id = other._id;
+            _name = other._name;
+            _sprite = other._sprite;
+            _ability = other._ability;
+            skillPrefab = other.skillPrefab;
+        }
+
+        protected override void Init()
+        {
+            _skill = GameObject.Instantiate(skillPrefab, owner.transform);
+            _skill.Init(owner);
+        }
 
         public void PowerGenerate()
         {
-            foreach (var skill in skills)
-            {
-                skill.SupplyPower(powerGen);
-            }
+            //foreach (var skill in skills)
+            //{
+            //    skill.SupplyPower(powerGen);
+            //}
         }
     }
 }

@@ -6,12 +6,17 @@ namespace LSemiRoguelike.Strategy
 {
     public class TileObject : MonoBehaviour, IHaveInfo
     {
-        [SerializeField] public uint _id;
-        [SerializeField] public string _name;
+        [SerializeField] private int _id;
+        [SerializeField] private string _name;
+        [SerializeField] private string _description;
+        [SerializeField] private Sprite _icon;
         [HideInInspector] public Vector3Int cellPos;
 
+        public int ID => _id;
         public string Name => _name;
-        public uint ID => _id;
+        public string Description => _description;
+
+        public Sprite Icon => _icon;
 
         public void Init(Vector3Int pos)
         {

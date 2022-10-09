@@ -4,19 +4,17 @@ using UnityEngine;
 
 namespace LSemiRoguelike
 {
-    public abstract class BaseContainer : MonoBehaviour, IHaveInfo
+    public enum ContainerType { Base, Skill, Player }
+    public abstract class BaseContainer : MonoBehaviour
     {
         [SerializeField] protected uint _id;
         [SerializeField] protected string _name;
+        [SerializeField] protected string _description;
         
         [SerializeField] protected BaseUnit _unit;
         [SerializeField] protected UnitStatusUI _statusUI;
 
         public BaseUnit Unit => _unit;
-
-        public uint ID => _id;
-
-        public string Name => _name;
 
         public Vector3 Pos => transform.position;
 
@@ -25,13 +23,13 @@ namespace LSemiRoguelike
         public virtual void Init()
         {
             _unit.Init(this);
-            _statusUI.InitUI(_unit.MaxStatus, _unit.TotalStatus);
+            _unit.getEffect.AddListener(SetStatusUI);
+            _statusUI.InitUI(_unit.TotalAbility.maxStatus, _unit.TotalStatus);
         }
         
         public virtual void GetEffect(Effect effect)
         {
             _unit.GetEffect(effect);
-            SetStatusUI();
         }
 
         protected virtual void SetStatusUI()

@@ -43,6 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a205b4eee9eca8b41a60f7ccdf133a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _id: 0
+  _name: 
+  _description: hit the target
   _grade: 1
   _sprite: {fileID: 0}
   range:
@@ -54,32 +57,9 @@ MonoBehaviour:
   effect:
     effectType: 0
     status:
-      hp: -1
+      hp: -5
       shield: 0
-    power: 0
-    condition:
-      burn:
-        grade: 0
-        duration: 0
-      poison:
-        grade: 0
-        duration: 0
-      frozen:
-        grade: 0
-        duration: 0
-      shock:
-        grade: 0
-        duration: 0
-      recovery:
-        grade: 0
-        duration: 0
-      wet: 0
-      oiled: 0
-    ability:
-      attackIncrese: 0
-      attackMulti: 0
-      damageReduce: 0
-      damageMulti: 0
+      power: 0
     knockback: {x: 0, y: 0, z: 0}
   vfxPrefab: {fileID: 100004, guid: 38621d8fa046a0445ab464c15d0da070, type: 3}
-  sfxClip: {fileID: 0}
+  sfxClip: {fileID: 8300000, guid: 5ab8fc664ca4d604f820e255005a664a, type: 3}
