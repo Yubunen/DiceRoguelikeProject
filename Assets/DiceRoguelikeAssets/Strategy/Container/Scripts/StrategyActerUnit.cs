@@ -38,7 +38,7 @@ namespace LSemiRoguelike.Strategy
             turnCount += InitTurnCount;
         }
 
-        protected void SetActions(List<UnitAction> actions)
+        protected void SetActions(List<ActionSkill> actions)
         {
             _actions = new List<StrategyAction>();
             for (int i = 0; i < actions.Count; i++)
@@ -91,15 +91,20 @@ namespace LSemiRoguelike.Strategy
 
         protected bool Acting(StrategyAction action, Vector3Int targetPos)
         {
-            if (action.action.skill)
+            if (action.skill is MainSkill)
             {
                 var targets = action.targets;
                 foreach (var target in targets)
                 {
                     if (target.cellPos == targetPos)
                     {
+                        if (!((action.skill as MainSkill).TargetCheck(target)))
+                        {
+                            Debug.Log("incorrect target");
+                            return false;
+                        }
                         nowAct = ActType.WaitAction;
-                        StartCoroutine(SkillCast(action.action.skill, target));
+                        StartCoroutine(SkillCast(action.skill as MainSkill, target));
                         return true;
                     }
                 }
@@ -134,8 +139,9 @@ namespace LSemiRoguelike.Strategy
 
         protected IEnumerator SkillCast(MainSkill skill, StrategyContainer target)
         {
-            yield return StartCoroutine(skill.Cast(target));
+            skill.Cast(target);
             Unit.Attack();
+            yield return new WaitForSeconds(skill.delayTime);
             nowAct = ActType.SelectAction;
         }
 

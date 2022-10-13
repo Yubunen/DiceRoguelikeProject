@@ -6,7 +6,7 @@ namespace LSemiRoguelike
 {
     public abstract class ActerUnit : BaseUnit
     {
-        public abstract void SetActionCallback(System.Action<List<UnitAction>> action);
+        public abstract void SetActionCallback(System.Action<List<ActionSkill>> action);
         public abstract void GetSkill();
         public abstract void Attack();
         public abstract void Special();

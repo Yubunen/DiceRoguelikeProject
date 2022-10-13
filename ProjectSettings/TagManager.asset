@@ -9,6 +9,7 @@ TagManager:
   - Unit
   - Trap
   - Enemy
+  - Object
   layers:
   - Default
   - TransparentFX

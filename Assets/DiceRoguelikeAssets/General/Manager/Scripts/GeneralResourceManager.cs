@@ -11,11 +11,11 @@ namespace LSemiRoguelike
     {
         private static GeneralResourceManager instance = null;
 
-        [SerializeField] private UnitResourceContainer _units;
-        [SerializeField] private ItemResourceContainer _items;
+        [SerializeField] private UnitResourceManager _units;
+        [SerializeField] private ItemResourceManager _items;
 
-        public static UnitResourceContainer units => instance._units;
-        public static ItemResourceContainer items => instance._items;
+        public static UnitResourceManager units => instance._units;
+        public static ItemResourceManager items => instance._items;
 
         private void OnValidate()
         {

@@ -7,7 +7,7 @@ using System.IO;
 
 namespace LSemiRoguelike.Strategy
 {
-    [CreateAssetMenu(fileName ="StrategyDatas", menuName ="DiceRogueLike/Strategy/DatasManager", order = 10)]
+    [CreateAssetMenu(fileName ="Strategy Data", menuName ="Dice Roguelike/Strategy/Data Manager", order = 10)]
     public class StrategyDataManager : ScriptableObject
     {
         private static StrategyDataManager instance;

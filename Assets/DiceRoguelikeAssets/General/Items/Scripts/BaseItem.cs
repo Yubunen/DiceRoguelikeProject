@@ -4,32 +4,18 @@ using UnityEngine;
 
 namespace LSemiRoguelike
 {
-    [System.Serializable]
-    public abstract class BaseItem : IHaveInfo
+    public abstract class BaseItem : ScriptableObject
     {
         //info
-        [SerializeField] protected int _id;
-        [SerializeField] protected string _name;
-        [SerializeField] protected string _description;
-        [SerializeField] protected Sprite _sprite;
-        [SerializeField] protected Ability _ability;
+        [SerializeField] private ItemInfo _info;
+        public ItemInfo Info => _info;
 
-        protected PlayerUnit _owner;
-
-        public Ability ability => _ability;
-        public void Init(PlayerUnit owner)
+        public BaseItem(ItemInfo info)
         {
-            _owner = owner;
-            Init();
+            _info = info;
         }
 
-        protected abstract void Init();
-
-        public int ID => _id;
-        public string Name => _name;
-        public string Description => _description;
-
-        public Sprite Icon => _sprite;
-        public PlayerUnit owner => _owner;
+        public abstract void Init();
+        public abstract void Remove();
     }
 }

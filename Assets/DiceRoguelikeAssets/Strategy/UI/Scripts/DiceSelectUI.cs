@@ -8,7 +8,7 @@ using TMPro;
 public class DiceSelectUI : MonoBehaviour
 {
     private static DiceSelectUI _inst;
-    public static DiceSelectUI inst => _inst;
+    public static DiceSelectUI Inst => _inst;
     
     [SerializeField] private DiceSelectBtn prefab;
     [SerializeField] Button acceptBtn, weaponBtn;
@@ -35,7 +35,7 @@ public class DiceSelectUI : MonoBehaviour
         onSelect = false;
     }
 
-    public void SetDiceUI(Dice[] dices, UnitAction weaponSkill, int maxCost, System.Action<bool[], bool> accept)
+    public void SetDiceUI(Dice[] dices, MainSkill weaponSkill, int maxCost, System.Action<bool[], bool> accept)
     {
         this.accept = accept;
         this.maxCost = maxCost;

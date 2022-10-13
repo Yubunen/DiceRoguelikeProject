@@ -5,28 +5,29 @@ using UnityEngine.Events;
 
 namespace LSemiRoguelike
 {
-    [System.Serializable]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Dice Roguelike/Item/Weapon", order = 0)]
     public class Weapon : BaseItem
     {
-        [SerializeField] private MainSkill skillPrefab;
-        private MainSkill _skill;
+        [SerializeField] private MainSkill _skillPrefab;
         [SerializeField] private int _cost;
+        private MainSkill _skill;
         public MainSkill Skill => _skill;
         public int Cost => _cost;
 
-        public Weapon(Weapon other)
+        public Weapon(Weapon other) : base(other.Info)
         {
-            _id = other._id;
-            _name = other._name;
-            _sprite = other._sprite;
-            _ability = other._ability;
-            skillPrefab = other.skillPrefab;
+            _skillPrefab = other._skillPrefab;
         }
 
-        protected override void Init()
+        public override void Init()
         {
-            _skill = GameObject.Instantiate(skillPrefab, owner.transform);
-            _skill.Init(owner);
+            _skill = Instantiate(_skillPrefab);
+            _skill.Init(PlayerManager.Instance.Player);
+        }
+
+        public override void Remove()
+        {
+
         }
     }
 }

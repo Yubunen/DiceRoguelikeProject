@@ -4,22 +4,24 @@ using UnityEngine;
 
 namespace LSemiRoguelike
 {
-    [System.Serializable]
-    public class Consumable : IHaveInfo
+    [CreateAssetMenu(fileName = "Consumable", menuName = "Dice Roguelike/Item/Consumable", order = 0)]
+    public class Consumable : BaseItem
     {
-        [SerializeField] int _id;
-        [SerializeField] string _name;
-        [SerializeField] string _description;
-        [SerializeField] Sprite _icon;
-
         [SerializeField] Effect _effect;
 
-        public int ID => _id;
+        public Consumable(Consumable other) : base(other.Info)
+        {
+            _effect = other._effect;
+        }
 
-        public string Name => _name;
+        public override void Init()
+        {
 
-        public string Description => _description;
+        }
 
-        public Sprite Icon => _icon;
+        public override void Remove()
+        {
+
+        }
     }
 }

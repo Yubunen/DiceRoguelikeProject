@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28109e173afca784b874ad5cdd7d8ca0, type: 3}
+  m_Name: Player Data
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 11400000, guid: e0e92cf80ecaf3841bbe9ff2d3b2af5e, type: 2}
+  weaponPrefab: {fileID: 11400000, guid: c2c778560dad2d54a84138dac96ae4a4, type: 2}
+  armPartsPrefab: {fileID: 11400000, guid: 623e4a6cfd3e4064391eb01ae324a105, type: 2}
+  legPartsPrefab: {fileID: 11400000, guid: 7de643ad4f8e21b4884023ae93d2c477, type: 2}
+  bodyPartsPrefab: {fileID: 11400000, guid: ecb683869271c174fba3e6774acb9e6c, type: 2}
+  accessoriePrefabs:
+  - {fileID: 11400000, guid: 7236b34bd614a114fac1b20e88155fdf, type: 2}
+  consumablePrefabs: []
+  dices:
+  - _maxCost: 0
+    up: {fileID: 11400000, guid: f11749f03ca65c84c81cfba22e389edc, type: 2}
+    down: {fileID: 11400000, guid: a17192b78894e1d4781c3c8f314f69ae, type: 2}
+    left: {fileID: 11400000, guid: 1444fc4d21819ca4b888222c49264387, type: 2}
+    right: {fileID: 11400000, guid: f11749f03ca65c84c81cfba22e389edc, type: 2}
+    front: {fileID: 11400000, guid: a17192b78894e1d4781c3c8f314f69ae, type: 2}
+    back: {fileID: 11400000, guid: 1444fc4d21819ca4b888222c49264387, type: 2}
+  - _maxCost: 0
+    up: {fileID: 11400000, guid: f11749f03ca65c84c81cfba22e389edc, type: 2}
+    down: {fileID: 11400000, guid: a17192b78894e1d4781c3c8f314f69ae, type: 2}
+    left: {fileID: 11400000, guid: 1444fc4d21819ca4b888222c49264387, type: 2}
+    right: {fileID: 11400000, guid: f11749f03ca65c84c81cfba22e389edc, type: 2}
+    front: {fileID: 11400000, guid: a17192b78894e1d4781c3c8f314f69ae, type: 2}
+    back: {fileID: 11400000, guid: 1444fc4d21819ca4b888222c49264387, type: 2}
+  - _maxCost: 0
+    up: {fileID: 11400000, guid: 213735292c5570c4585b6abe0bfcc1ac, type: 2}
+    down: {fileID: 11400000, guid: 7fe0196061838c54ca67514a4f97e16b, type: 2}
+    left: {fileID: 11400000, guid: c339fc56d313c3a4ab70dbdc0a4a0b43, type: 2}
+    right: {fileID: 11400000, guid: 213735292c5570c4585b6abe0bfcc1ac, type: 2}
+    front: {fileID: 11400000, guid: 7fe0196061838c54ca67514a4f97e16b, type: 2}
+    back: {fileID: 11400000, guid: c339fc56d313c3a4ab70dbdc0a4a0b43, type: 2}
+  skills: []

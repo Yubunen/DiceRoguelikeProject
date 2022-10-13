@@ -8,7 +8,7 @@ namespace LSemiRoguelike.Shooting
     {
         public new ActerUnit Unit { get { return base.Unit as ActerUnit; } }
         protected float moveSpeed => Unit.TotalAbility.speed;
-        protected List<UnitAction> _actions;
+        protected List<MainSkill> _actions;
         private bool moveable = true;
 
         Magazine magazine;
@@ -19,13 +19,20 @@ namespace LSemiRoguelike.Shooting
             base.Init();
             Unit.SetActionCallback(SetActions);
             magazine = new Magazine();
-            _actions = new List<UnitAction>();
+            _actions = new List<MainSkill>();
             Reload();
         }
 
-        protected void SetActions(List<UnitAction> actions)
+        protected void SetActions(List<ActionSkill> actions)
         {
-            _actions = actions;
+            foreach (var skill in actions)
+            {
+                if (skill is MainSkill)
+                {
+                    _actions.Add(Instantiate(skill as MainSkill));
+                    _actions[_actions.Count - 1].Init(Unit);
+                }
+            }
         }
 
         protected void Update()
@@ -46,7 +53,7 @@ namespace LSemiRoguelike.Shooting
                 ShootingContainer target;
                 if (hit.transform.TryGetComponent(out target))
                 {
-                    StartCoroutine(_actions[0].skill?.Cast(target));
+                    _actions[0]?.Cast(target);
                 }
             }
         }
