@@ -12,8 +12,8 @@ namespace LSemiRoguelike
         public Weapon weaponPrefab;
 
         public ArmParts armPartsPrefab;
-        public BodyParts legPartsPrefab;
-        public LegParts bodyPartsPrefab;
+        public LegParts legPartsPrefab;
+        public BodyParts bodyPartsPrefab;
 
         public List<Accessory> accessoriePrefabs;
 
