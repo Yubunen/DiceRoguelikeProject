@@ -6,35 +6,36 @@ using UnityEditor;
 
 namespace LSemiRoguelike
 {
+    [CreateAssetMenu(fileName = "SkillUnit", menuName = "Dice Roguelike/Unit/SkillUnit", order = 0)]
     public class SkillUnit : ActerUnit
     {
-        [SerializeField] List<UnitAction> actionPrefabs;
+        [SerializeField] List<ActionSkill> actionSkillPrefabs;
         [SerializeField] List<SubSkill> attSubPrefabs, dmgSubPrefabs, specialSubPrefabs;
         [SerializeField] List<PassiveSkill> passivePrefabs;
 
         [SerializeField] float attPowerGen = 1f, movePowerGen = 1f, dmgPowerGen = 1f;
 
-        List<UnitAction> _actions;
+        List<ActionSkill> _actions;
         List<SubSkill> _attSub, _specialSub, _dmgSub;
         List<PassiveSkill> _passive;
 
-        Action<List<UnitAction>> actionCallBacck;
+        Action<List<ActionSkill>> actionCallBacck;
 
         protected override void Init()
         {
-            _actions = new List<UnitAction>();
+            _actions = new List<ActionSkill>();
             _attSub = new List<SubSkill>();
             _specialSub = new List<SubSkill>();
             _dmgSub = new List<SubSkill>();
             _passive = new List<PassiveSkill>();
 
-            actionPrefabs.ForEach((s) => _actions.Add(new UnitAction(s.cost, Instantiate(s.skill))));
+            actionSkillPrefabs.ForEach((s) => _actions.Add(Instantiate(s)));
             attSubPrefabs.ForEach((s) => _attSub.Add(Instantiate(s)));
             specialSubPrefabs.ForEach((s) => _specialSub.Add(Instantiate(s)));
             dmgSubPrefabs.ForEach((s) => _dmgSub.Add(Instantiate(s)));
             passivePrefabs.ForEach((s) => _passive.Add(Instantiate(s)));
 
-            _actions.ForEach((s) => s.skill.Init(this));
+            _actions.ForEach((s) => s.Init(this));
             _attSub.ForEach((s) => s.Init(this));
             _specialSub.ForEach((s) => s.Init(this));
             _dmgSub.ForEach((s) => s.Init(this));
@@ -67,13 +68,9 @@ namespace LSemiRoguelike
             actionCallBacck(_actions);
         }
 
-        public override void SetActionCallback(Action<List<UnitAction>> action)
+        public override void SetActionCallback(Action<List<ActionSkill>> action)
         {
             actionCallBacck = action;
         }
-#if UNITY_EDITOR
-        [MenuItem("GameObject/Dice Rogue Like/Skill Unit", false, 10)]
-        static void CreateSkillUnit(MenuCommand menuCommand) { CreateUnit(menuCommand, typeof(SkillUnit)); }
-#endif
     }
 }

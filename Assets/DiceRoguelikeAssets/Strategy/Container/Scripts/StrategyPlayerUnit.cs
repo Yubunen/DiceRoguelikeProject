@@ -13,8 +13,8 @@ namespace LSemiRoguelike.Strategy
 
         public override void Init()
         {
+            _unit = PlayerManager.Instance.Player;
             base.Init();
-
         }
 
         private void SelectAction(int actNum)

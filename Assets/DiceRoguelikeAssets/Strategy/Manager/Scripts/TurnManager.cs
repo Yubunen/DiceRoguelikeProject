@@ -42,11 +42,10 @@ namespace LSemiRoguelike.Strategy
                 float diff = x.Unit.TotalAbility.speed - y.Unit.TotalAbility.speed;
                 if (diff > 0) return 1;
                 if (diff < 0) return -1;
-                if (x.Unit.ID > y.Unit.ID) return 1;
+                if (x.Unit.Info.ID > y.Unit.Info.ID) return 1;
                 return -1;
             });
 
-            Debug.Log(ProgressUIManager.instance);
             foreach (var unit in units)
             {
                 progressUIs.Add(ProgressUIManager.instance.InstantiateUnitProgressUI(unit.Unit));

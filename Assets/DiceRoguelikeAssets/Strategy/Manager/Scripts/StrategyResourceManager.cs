@@ -5,35 +5,37 @@ using UnityEngine;
 
 namespace LSemiRoguelike.Strategy
 {
-    [ExecuteAlways]
-    public class StrategyResourceManager : MonoBehaviour
+    [CreateAssetMenu(fileName = "StrategyResourceManager", menuName = "Dice Roguelike/Strategy/StrategyResourceManager", order = 1)]
+    public class StrategyResourceManager : ScriptableObject
     {
         private static StrategyResourceManager instance = null;
-        [SerializeField] private ResourceContainer<TileObject> _tiles;
+        [SerializeField] private List<TileObject> _tileObjects;
         [SerializeField] private StrategyContainer _baseUnitPrefab;
         [SerializeField] private StrategySkillUnit _skillUnitPrefab;
         [SerializeField] private StrategyPlayerUnit _playerUnitPrefab;
-
-        public static ResourceContainer<TileObject> tiles => instance._tiles;
 
 
         private void OnValidate()
         {
             instance = this;
-            _tiles.Sort();
+        }
+        public static TileObject GetTileById(int id)
+        {
+            return instance._tileObjects.Find((t)=>t.ID==id);
         }
 
-        public static StrategyContainer GetContainerByType(System.Type type)
+        public static StrategyContainer GetContainerByType(UnitInfo.UnitType type)
         {
-            Debug.Log(type);
             if (!instance) return null;
-            if (type == typeof(BaseUnit))
-                return Instantiate(instance._baseUnitPrefab);
-            else if (type == typeof(SkillUnit))
-                return Instantiate(instance._skillUnitPrefab);
-            else if (type == typeof(PlayerUnit))
-                return Instantiate(instance._playerUnitPrefab);
-            Debug.Log("not");
+            switch (type)
+            {
+                case UnitInfo.UnitType.ObjectUnit:
+                    return Instantiate(instance._baseUnitPrefab);
+                case UnitInfo.UnitType.SkillUnit:
+                    return Instantiate(instance._skillUnitPrefab);
+                case UnitInfo.UnitType.PlayerUnit:
+                    return Instantiate(instance._playerUnitPrefab);
+            }
             return null;
         }
     }

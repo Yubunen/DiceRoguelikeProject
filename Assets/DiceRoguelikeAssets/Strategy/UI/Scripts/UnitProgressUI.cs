@@ -16,7 +16,7 @@ public class UnitProgressUI : MonoBehaviour
 
     public void Init(ActerUnit unit)
     {
-        image.sprite = unit.Icon;
+        image.sprite = unit.Info.Sprite;
         SetProgress(100);
     }
 

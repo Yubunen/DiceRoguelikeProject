@@ -6,22 +6,36 @@ using UnityEngine;
 namespace LSemiRoguelike.Strategy
 {
     [System.Serializable]
-    public struct ObjWithPos
+    public struct UnitWithPos
     {
-        public int objID;
+        public BaseUnit unit;
         public Vector3Int pos;
 
-        public ObjWithPos(int id, Vector3Int pos)
+        public UnitWithPos(StrategyContainer container)
         {
-            this.objID = id;
-            this.pos = pos;
+            unit = container.Unit;
+            pos = container.cellPos;
         }
     }
 
-    [CreateAssetMenu(fileName = "TileMapData", menuName = "DiceRogueLike/Strategy/TileMapData", order = 11)]
+    [System.Serializable]
+    public struct TileWithPos
+    {
+        public TileObject tile;
+        public Vector3Int pos;
+
+        public TileWithPos(TileObject tile)
+        {
+            this.tile = StrategyResourceManager.GetTileById(tile.ID);
+            pos = tile.CellPos;
+        }
+    }
+
+    [CreateAssetMenu(fileName = "TileMapData", menuName = "Dice Roguelike/Strategy/TileMapData", order = 1)]
     public class TileMapData : ScriptableObject
     {
-        public List<ObjWithPos> tiles;
-        public List<ObjWithPos> units;
+        public List<TileWithPos> tiles;
+        public List<UnitWithPos> units;
+        public Vector3Int playerPos;
     }
 }

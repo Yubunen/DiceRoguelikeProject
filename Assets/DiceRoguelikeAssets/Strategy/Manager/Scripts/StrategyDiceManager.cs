@@ -17,21 +17,20 @@ namespace LSemiRoguelike.Strategy
 
         protected override void Init()
         {
-            foreach (var dice in dices) dice.Init(owner);
             diceObjects = new List<DiceObject>();
         }
 
         public override void GetActions(int power)
         {
             this.power = power;
-            DiceSelectUI.inst.SetDiceUI(dices, weaponAction, power, GetSelected);
+            DiceSelectUI.Inst.SetDiceUI(dices, weaponAction, power, GetSelected);
         }
 
         public void GetSelected(bool[] diceUse, bool weaponUse)
         {
             if (diceUse == null && !weaponUse)
             {
-                returnAction(new List<UnitAction>());
+                returnAction(new List<ActionSkill>());
                 return;
             }
 
@@ -47,7 +46,7 @@ namespace LSemiRoguelike.Strategy
         {
             var count = useDice.Count;
             var interval = width / (count + 1);
-            var results = new List<UnitAction>();
+            var results = new int[count];
 
             for (int i = diceObjects.Count; i < count; i++)
             {
@@ -57,18 +56,20 @@ namespace LSemiRoguelike.Strategy
 
             for (int i = 0; i < count; i++)
             {
+                int j = i;
                 diceObjects[i].gameObject.SetActive(true);
-                diceObjects[i].transform.localPosition =
-                    new Vector3(-width / 2 + interval * (i + 1), height, 0);
-                StartCoroutine(diceObjects[i].RollDice(useDice[i], (p) => results.Add(p)));
+                diceObjects[i].transform.localPosition = new Vector3(-width / 2 + interval * (i + 1), height, 0);
+                diceObjects[i].RollDice(useDice[i], (p) => { results[j] = p; count--; });
                 yield return new WaitForSeconds(throwTime / count);
             }
-
-            yield return new WaitUntil(() => results.Count == useDice.Count);
-            if (weaponUse) results.Add(weaponAction);
-            returnAction(results);
-
+            yield return new WaitUntil(() => count == 0);
+            
+            var skills = new List<ActionSkill>();
+            if (weaponUse) skills.Add(weaponAction);
+            for (int i = 0; i < results.Length; i++) skills.Add(useDice[i].Skills[results[i]]);
             foreach (var obj in diceObjects) obj.gameObject.SetActive(false);
+
+            returnAction(skills);
         }
     }
 }

@@ -14,108 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapons:
     resources:
-    - _id: 0
-      _name: Axe
-      _description: 
-      _sprite: {fileID: 21300000, guid: 8708d80070522a043a1ab6a2b2775382, type: 3}
-      _ability:
-        maxStatus:
-          hp: 0
-          shield: 0
-          power: 0
-        attackAbsolute: 0
-        attackRelative: 0
-        defenceAbsolute: 0
-        defenceRelative: 0
-        speed: 0
-      skillPrefab: {fileID: 7383512993328325396, guid: 3600d7d0f8f5f0d4eb73230dfa8c9e6e, type: 3}
-      _cost: 3
-    - _id: 1
-      _name: Gun
-      _description: 
-      _sprite: {fileID: 21300020, guid: a0e7f1167efba544bb8d6e3198ae44f9, type: 3}
-      _ability:
-        maxStatus:
-          hp: 0
-          shield: 0
-          power: 0
-        attackAbsolute: 0
-        attackRelative: 0
-        defenceAbsolute: 0
-        defenceRelative: 0
-        speed: 0
-      skillPrefab: {fileID: 7383512993328325396, guid: be7f6f1e1fdb6e64e8a5d7bd14b598f0, type: 3}
-      _cost: 3
+    - {fileID: 11400000, guid: c2c778560dad2d54a84138dac96ae4a4, type: 2}
   _armParts:
     resources:
-    - _id: 0
-      _name: Sample arm
-      _description: 
-      _sprite: {fileID: -5598242937924959737, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
-      _ability:
-        maxStatus:
-          hp: 0
-          shield: 0
-          power: 0
-        attackAbsolute: 0
-        attackRelative: 0
-        defenceAbsolute: 0
-        defenceRelative: 0
-        speed: 0
-      _powerGen: 0
-      skillPrefab: {fileID: -2982372751357950745, guid: b3f55b1924d4b8a4faf067e7ac94ca11, type: 3}
+    - {fileID: 11400000, guid: 7a6eb4be951bc2d4f9f586981a9bbc76, type: 2}
   _bodyParts:
     resources:
-    - _id: 0
-      _name: Sample body
-      _description: 
-      _sprite: {fileID: -9172421302522054499, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
-      _ability:
-        maxStatus:
-          hp: 0
-          shield: 0
-          power: 0
-        attackAbsolute: 0
-        attackRelative: 0
-        defenceAbsolute: 0
-        defenceRelative: 0
-        speed: 0
-      _powerGen: 0
-      skillPrefab: {fileID: -2982372751357950745, guid: b3f55b1924d4b8a4faf067e7ac94ca11, type: 3}
+    - {fileID: 11400000, guid: 6d870145be12a4a4ea62c391b630773f, type: 2}
   _legParts:
     resources:
-    - _id: 0
-      _name: Sample leg
-      _description: 
-      _sprite: {fileID: -3993533075046343410, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
-      _ability:
-        maxStatus:
-          hp: 0
-          shield: 0
-          power: 0
-        attackAbsolute: 0
-        attackRelative: 0
-        defenceAbsolute: 0
-        defenceRelative: 0
-        speed: 0
-      _powerGen: 0
-      skillPrefab: {fileID: -2982372751357950745, guid: b3f55b1924d4b8a4faf067e7ac94ca11, type: 3}
+    - {fileID: 11400000, guid: 67046e0e995fd39499e3fa991f140c41, type: 2}
   _accessories:
     resources:
-    - _id: 0
-      _name: Skull Mask
-      _description: 
-      _sprite: {fileID: 21300000, guid: 1c84373cf4be81c44b97ce70ed9d78e6, type: 3}
-      _ability:
-        maxStatus:
-          hp: 0
-          shield: 0
-          power: 0
-        attackAbsolute: 0
-        attackRelative: 0
-        defenceAbsolute: 0
-        defenceRelative: 0
-        speed: 0
-      skillPrefab: {fileID: -8583386272399321139, guid: c4f858b1a7947f648b6a69aa23aae62f, type: 3}
+    - {fileID: 11400000, guid: 7236b34bd614a114fac1b20e88155fdf, type: 2}
   _consumables:
     resources: []

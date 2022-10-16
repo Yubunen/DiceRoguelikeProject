@@ -36,19 +36,22 @@ namespace LSemiRoguelike.Strategy
 
         public void TileMapSave()
         {
-			tileMapData.tiles = new List<ObjWithPos>();
-			tileMapData.units = new List<ObjWithPos>();
+			tileMapData.tiles = new List<TileWithPos>();
+			tileMapData.units = new List<UnitWithPos>();
 
 
 			for (int i = 0; i < groundTileMap.transform.childCount; i++)
 			{
 				Transform child = groundTileMap.transform.GetChild(i);
-				tileMapData.tiles.Add(new ObjWithPos(child.GetComponent<TileObject>().ID, WorldToCell(child.position)));
+				tileMapData.tiles.Add(new TileWithPos(child.GetComponent<TileObject>()));
 			}
 			for (int i = 0; i < unitTileMap.transform.childCount; i++)
 			{
 				Transform child = unitTileMap.transform.GetChild(i);
-				tileMapData.units.Add(new ObjWithPos(child.GetComponent<BaseContainer>().Unit.ID, WorldToCell(child.position)));
+				if (child.GetComponent<StrategyPlayerUnit>())
+					tileMapData.playerPos = child.GetComponent<StrategyPlayerUnit>().cellPos;
+				else
+					tileMapData.units.Add(new UnitWithPos(child.GetComponent<StrategyContainer>()));
 			}
 			UnityEditor.EditorUtility.SetDirty(tileMapData);
 		}
@@ -73,10 +76,8 @@ namespace LSemiRoguelike.Strategy
             {
                 foreach (var tile in tileMapData.tiles)
                 {
-                    var obj = StrategyResourceManager.tiles.GetByID(tile.objID);
-                    if (!obj) continue;
-                    var pos = CellToWorld(tile.pos) + obj.transform.position;
-                    Instantiate(obj, pos, Quaternion.identity, groundTileMap.transform).Init(tile.pos);
+                    var pos = CellToWorld(tile.pos) + tile.tile.transform.position;
+                    Instantiate(tile.tile, pos, Quaternion.identity, groundTileMap.transform).Init(tile.pos);
                 }
             }
 
@@ -85,13 +86,19 @@ namespace LSemiRoguelike.Strategy
                 foreach (var unit in tileMapData.units)
                 {
                     var pos = CellToWorld(unit.pos);
-					var tempUnit = GeneralResourceManager.units.GetByID(unit.objID);
-					var container = StrategyResourceManager.GetContainerByType(tempUnit.GetType());
+					var container = StrategyResourceManager.GetContainerByType(unit.unit.Info.Type);
 					container.transform.position = pos;
 					container.transform.rotation = Quaternion.identity;
 					container.transform.SetParent(unitTileMap.transform);
 
-					container.SetUnit(Instantiate(tempUnit, container.transform));
+					if (unit.unit.Info.Type == UnitInfo.UnitType.PlayerUnit)
+                    {
+						container.SetUnit(PlayerManager.Instance.Player);
+                    }
+					else
+                    {
+						container.SetUnit(Instantiate(unit.unit.Info.Prefab, container.transform));
+                    }
                 }
             }
         }
@@ -373,6 +380,7 @@ namespace LSemiRoguelike.Strategy
 			if (GUILayout.Button("New"))
 			{
 				tileMapManager.tileMapData = CreateTileMapData();
+				tileMapManager.TileMapSave();
 			}
 		}
 

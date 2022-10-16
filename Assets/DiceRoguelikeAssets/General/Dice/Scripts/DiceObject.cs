@@ -35,24 +35,24 @@ public class DiceObject : MonoBehaviour
         }
     }
 
-    public IEnumerator RollDice(Dice dice, System.Action<UnitAction> partsReturn)
+    public void RollDice(Dice dice, System.Action<int> resultReturn)
     {
         xPos = transform.position.x;
         zPos = transform.position.z;
         for (int i = 0; i < sides.Length; i++)
         {
-            sideSprites[i].sprite = dice.GetParts(i).Icon;
+            sideSprites[i].sprite = dice.Skills[i].Info.Sprite;
         }
-        coroutine = StartCoroutine(RollCo());
-        yield return coroutine;
-
-        var rot = transform.InverseTransformDirection(Vector3.up);
-        var num = (int)Mathf.Round(rot.x + rot.y * 2 + rot.z * 3);
-        num = num > 0 ? num - 1 : 2 - num;
-        partsReturn(dice.GetParts(num%6));
+        StartCoroutine(RollCo(() =>
+        {
+            var rot = transform.InverseTransformDirection(Vector3.up);
+            var num = (int)Mathf.Round(rot.x + rot.y * 2 + rot.z * 3);
+            num = num > 0 ? num - 1 : 2 - num;
+            resultReturn(num % 6);
+        }));
     }
     
-    IEnumerator RollCo()
+    IEnumerator RollCo(System.Action action)
     {
         transform.rotation = Quaternion.Euler(Ramdom.Range(0, 360), Ramdom.Range(0, 360), Ramdom.Range(0, 360));
         rb.velocity = Vector3.up * throwPower;
@@ -62,6 +62,6 @@ public class DiceObject : MonoBehaviour
             transform.position = new Vector3(xPos, transform.position.y, zPos);
             yield return null;
         }
-        yield break;
+        action();
     }
 }

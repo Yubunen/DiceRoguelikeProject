@@ -5,34 +5,23 @@ using UnityEditor;
 
 namespace LSemiRoguelike
 {
+    [CreateAssetMenu(fileName = "BaseUnit", menuName = "Dice Roguelike/Unit/BaseUnit", order = 0)]
     [DisallowMultipleComponent]
-    public class BaseUnit : MonoBehaviour, IHaveInfo
+    public class BaseUnit : ScriptableObject
     {
         [Header("Info")]
-        [SerializeField] protected int _id;
-        [SerializeField] protected string _name;
-        [SerializeField] protected string _description;
-        [SerializeField] protected Sprite _sprite;
+        [SerializeField] private UnitInfo _info;
+        [SerializeField] protected Ability _ability;
+        [SerializeField] private Animation _anim;
 
-        public int ID => _id;
-        public string Name => _name;
-        public string Description => _description;
-        public Sprite Icon => _sprite;
+        public UnitInfo Info => _info;
 
-
-        [Header("Status")]
-        [SerializeField] protected Ability _initAbility;
-
-
-        protected SpriteRenderer _renderer;
         protected Status _status;
         protected Ability _totalAbility;
         protected BaseContainer _container;
         protected List<Buff> _buffs = new List<Buff>();
-        protected UnityEvent _getEffect = new UnityEvent();
-        public UnityEvent getEffect => _getEffect;
-        public virtual bool IsDead => _status.hp <= 0;
 
+        public virtual bool IsDead => _status.hp <= 0;
         public Status TotalStatus => _status;
         public Status MaxStatus => TotalAbility.maxStatus;
         public Ability TotalAbility => _totalAbility;
@@ -68,7 +57,7 @@ namespace LSemiRoguelike
 
         protected virtual void SetAbility()
         {
-            _totalAbility = _initAbility;
+            _totalAbility = _ability;
             foreach (Buff buff in _buffs) _totalAbility += buff.ability;
         }
 
@@ -144,40 +133,7 @@ namespace LSemiRoguelike
                     GetBuff(buff);
                 }
             }
-            _getEffect.Invoke();
+            Container.UpdateStatusUI();
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            if (_renderer && _sprite)
-            {
-                _renderer.sprite = _sprite;
-            }
-        }
-
-        protected static void CreateUnit(MenuCommand menuCommand, System.Type type)
-        {
-            var obj = new GameObject("BaseUnit", type);
-
-            var renderer = new GameObject("Renderer");
-            renderer.transform.SetParent(obj.transform);
-            var spriteRender = renderer.AddComponent<SpriteRenderer>();
-            spriteRender.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-            spriteRender.receiveShadows = true;
-            spriteRender.material = MaterialManager.UnitMaterial;
-
-            obj.GetComponent<BaseUnit>()._renderer = renderer.GetComponent<SpriteRenderer>();
-
-            GameObjectUtility.SetParentAndAlign(obj, menuCommand.context as GameObject);
-
-            Undo.RegisterCreatedObjectUndo(obj, "Create" + obj.name);
-
-            Selection.activeObject = obj;
-        }
-
-        [MenuItem("GameObject/Dice Rogue Like/Base Unit", false, 10)]
-        static void CreateBaseUnit(MenuCommand menuCommand) { CreateUnit(menuCommand, typeof(BaseUnit)); }
-#endif
     }
 }

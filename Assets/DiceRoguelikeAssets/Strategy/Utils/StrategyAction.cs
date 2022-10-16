@@ -6,24 +6,26 @@ namespace LSemiRoguelike.Strategy
 {
     public class StrategyAction
     {
-        public UnitAction action;
+        public ActionSkill skill;
         public Route[] routes;
         public StrategyContainer[] targets;
 
-        public StrategyAction(UnitAction action, Vector3Int pos)
+        public StrategyAction(ActionSkill skill, Vector3Int pos)
         {
-            this.action = action;
-            (routes, targets) = TileMapManager.manager.GetRangeTiles(pos, action.skill ? action.skill.range : new Range(Range.RangeType.FourDirection, action.cost));
+            this.skill = skill;
+            Range range;
+            if (skill is MainSkill) range = (skill as MainSkill).range;
+            (routes, targets) = TileMapManager.manager.GetRangeTiles(pos, skill is MainSkill ? (skill as MainSkill).range : new Range(Range.RangeType.FourDirection, (skill as SpecialSkill).Cost));
         }
 
         public void SetRange(Vector3Int pos)
         {
-            (routes, targets) = TileMapManager.manager.GetRangeTiles(pos, action.skill ? action.skill.range : new Range(Range.RangeType.FourDirection, action.cost));
+            (routes, targets) = TileMapManager.manager.GetRangeTiles(pos, skill is MainSkill ? (skill as MainSkill).range : new Range(Range.RangeType.FourDirection, (skill as SpecialSkill).Cost));
         }
 
         public override string ToString()
         {
-            return action.ToString();
+            return skill.ToString();
         }
     }
 }

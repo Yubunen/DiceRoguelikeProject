@@ -132,12 +132,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 622814847384178580, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: m_Name
-      value: ItemManager
+      value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 622814847384178580, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 11400000, guid: e0e92cf80ecaf3841bbe9ff2d3b2af5e, type: 2}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _diceCount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 69930bd9df215cb45943401b8270e3fa, type: 2}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _playerPrefab
+      value: 
+      objectReference: {fileID: 11400000, guid: e0e92cf80ecaf3841bbe9ff2d3b2af5e, type: 2}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.up.cost
       value: 0
@@ -223,13 +239,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8752531285716693698, guid: c0c8f7e02a1e8bc488d9e1faac64dd43, type: 3}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _dices.Array.data[0].front
+      value: 
+      objectReference: {fileID: 7383512993328325396, guid: be7f6f1e1fdb6e64e8a5d7bd14b598f0, type: 3}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.Array.data[0].right
       value: 
       objectReference: {fileID: 7383512993328325396, guid: 3600d7d0f8f5f0d4eb73230dfa8c9e6e, type: 3}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _dices.Array.data[1].front
+      value: 
+      objectReference: {fileID: 7383512993328325396, guid: be7f6f1e1fdb6e64e8a5d7bd14b598f0, type: 3}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.Array.data[1].right
       value: 
       objectReference: {fileID: 7383512993328325396, guid: 3600d7d0f8f5f0d4eb73230dfa8c9e6e, type: 3}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _dices.Array.data[2].front
+      value: 
+      objectReference: {fileID: -8752531285716693698, guid: b9feb4c30b3cfc149a2107768730c0f2, type: 3}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.Array.data[2].right
       value: 
@@ -259,6 +287,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _dices.Array.data[3].up.cost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.Array.data[0]._maxCost
       value: 1
       objectReference: {fileID: 0}
@@ -269,6 +301,10 @@ PrefabInstance:
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.Array.data[2].up._cost
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
+      propertyPath: _dices.Array.data[3]._maxCost
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3208972711241584435, guid: 8975c44cc769fb24e954d944eb660d1f, type: 3}
       propertyPath: _dices.Array.data[0].down.cost

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a5c85a11256e6645a4040cbbe2bcb2a, type: 3}
+  m_Name: Body Parts
+  m_EditorClassIdentifier: 
+  _info:
+    _id: 0
+    _type: 2
+    _name: 
+    _tooltip: 
+    _sprite: {fileID: -9172421302522054499, guid: 1f72e2ef15696eb4cb85937f667cb11c, type: 3}
+    _prefab: {fileID: 11400000}
+  _powerGen: 0
+  _skillPrefab: {fileID: 11400000, guid: 053cb1735f1139a4ebae7ca755851ef6, type: 2}

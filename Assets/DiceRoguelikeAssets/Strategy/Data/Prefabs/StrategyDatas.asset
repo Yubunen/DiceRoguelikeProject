@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29188fa7e281c924ba47fd3f80af9ebd, type: 3}
   m_Name: StrategyDatas
   m_EditorClassIdentifier: 
-  _tileMapDatas:
-  - {fileID: 11400000, guid: 838b164f75e8020448b67a981a5572f1, type: 2}
+  _tileMapDatas: []

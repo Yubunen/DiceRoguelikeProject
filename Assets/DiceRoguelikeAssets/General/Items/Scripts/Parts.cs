@@ -4,30 +4,29 @@ using UnityEngine;
 
 namespace LSemiRoguelike
 {
-    [System.Serializable]
-    public class Parts : BaseItem
+    public abstract class Parts : BaseItem
     {
         [SerializeField] protected float _powerGen = 1f;
-        [SerializeField] protected SubSkill skillPrefab;
+        [SerializeField] protected SubSkill _skillPrefab;
 
         protected SubSkill _skill;
         public SubSkill skill => _skill;
-
-        public Parts(Parts other)
+        public Parts(Parts other) : base(other.Info)
         {
-            _id = other._id;
-            _name = other._name;
-            _sprite = other._sprite;
-            _ability = other._ability;
-            skillPrefab = other.skillPrefab;
+            _skillPrefab = other._skillPrefab;
         }
 
-        protected override void Init()
+
+        public override void Init()
         {
-            _skill = GameObject.Instantiate(skillPrefab, owner.transform);
-            _skill.Init(owner);
+            _skill = Instantiate(_skillPrefab);
+            _skill.Init(PlayerManager.Instance.Player);
         }
 
+        public override void Remove()
+        {
+
+        }
         public void PowerGenerate()
         {
             //foreach (var skill in skills)
