@@ -8,17 +8,17 @@ namespace LSemiRoguelike
     public class ItemResourceManager : ScriptableObject
     {
         [SerializeField] private ItemResourceContainer<Weapon> _weapons;
-        [SerializeField] private ItemResourceContainer<Parts> _armParts;
-        [SerializeField] private ItemResourceContainer<Parts> _bodyParts;
-        [SerializeField] private ItemResourceContainer<Parts> _legParts;
+        [SerializeField] private ItemResourceContainer<ArmParts> _armParts;
+        [SerializeField] private ItemResourceContainer<BodyParts> _bodyParts;
+        [SerializeField] private ItemResourceContainer<LegParts> _legParts;
         [SerializeField] private ItemResourceContainer<Accessory> _accessories;
         [SerializeField] private ItemResourceContainer<Consumable> _consumables;
 
 
         public ItemResourceContainer<Weapon> Weapons => _weapons;
-        public ItemResourceContainer<Parts> ArmParts => _armParts;
-        public ItemResourceContainer<Parts> BodyParts => _bodyParts;
-        public ItemResourceContainer<Parts> LegParts => _legParts;
+        public ItemResourceContainer<ArmParts> ArmParts => _armParts;
+        public ItemResourceContainer<BodyParts> BodyParts => _bodyParts;
+        public ItemResourceContainer<LegParts> LegParts => _legParts;
         public ItemResourceContainer<Accessory> Accessories => _accessories;
         public ItemResourceContainer<Consumable> Consumables => _consumables;
 

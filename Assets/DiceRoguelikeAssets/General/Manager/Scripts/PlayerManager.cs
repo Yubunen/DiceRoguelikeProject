@@ -18,7 +18,9 @@ namespace LSemiRoguelike
 
         private PlayerUnit _player;
         private Weapon _weapon;
-        private Parts _armParts, _legParts, _bodyParts;
+        private ArmParts _armParts;
+        private BodyParts _bodyParts;
+        private LegParts _legParts;
         private List<Accessory> _accessories = new List<Accessory>();
         private List<Consumable> _consumables = new List<Consumable>();
         private List<ActionSkill> _skills = new List<ActionSkill>();
@@ -26,9 +28,9 @@ namespace LSemiRoguelike
 
         public PlayerUnit Player => _player;
         public Weapon Weapon => _weapon;
-        public Parts ArmParts => _armParts;
-        public Parts LegParts => _legParts;
-        public Parts BodyParts => _bodyParts;
+        public ArmParts ArmParts => _armParts;
+        public LegParts LegParts => _legParts;
+        public BodyParts BodyParts => _bodyParts;
         public Accessory[] Accessories => _accessories.ToArray();
         public Consumable[] Consumables => _consumables.ToArray();
         public Dice[] Dices => _dices.ToArray();
@@ -109,15 +111,15 @@ namespace LSemiRoguelike
         {
             _weapon = weapon;
         }
-        public void SetArmParts(Parts parts)
+        public void SetArmParts(ArmParts parts)
         {
             _armParts = parts;
         }
-        public void SetBodyParts(Parts parts)
+        public void SetBodyParts(BodyParts parts)
         {
             _bodyParts = parts;
         }
-        public void SetLegParts(Parts parts)
+        public void SetLegParts(LegParts parts)
         {
             _legParts = parts;
         }
