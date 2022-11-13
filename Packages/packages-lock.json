@@ -215,13 +215,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "com.yubunen.yubpack": {
-      "version": "https://github.com/Yubunen/YubPack.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "e73eedad0d96d93938bfdae47dc4e887d8ccafc6"
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
